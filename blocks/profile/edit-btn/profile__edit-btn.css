@@ -1,0 +1,13 @@
+.profile__edit-btn {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 1px solid white;
+    background-color: inherit;
+    background-image: url(../../../image/edit_btn.svg);
+    transition: opasity 0.4s linear;
+    cursor: pointer;
+}
+.profile__edit-btn:hover {
+    opacity: 0.6;
+}

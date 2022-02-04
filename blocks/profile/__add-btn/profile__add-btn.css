@@ -1,0 +1,15 @@
+.profile__add-btn {
+    display: inline-flex;
+    align-items: baseline;
+    margin: 22px 0 0 244px;
+    width: 150px;
+    height: 50px;
+    border: 1px solid white;
+    background-color: inherit;
+    background-image: url(../../../image/add_btn.svg);
+    transition: opasity 0.4s linear;
+    cursor: pointer;
+}
+.profile__add-btn:hover {
+    opacity: 0.6;
+}
