@@ -5,5 +5,6 @@
     row-gap: 20px;
     column-gap: 17px;
     max-width: 880px;
-    margin: 0 auto;    
+    margin: 0 auto;
+    padding-bottom: 66px; 
 }
