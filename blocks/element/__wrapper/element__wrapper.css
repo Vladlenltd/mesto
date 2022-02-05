@@ -1,0 +1,8 @@
+.element__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    margin: 25px 0 0 0;
+}
