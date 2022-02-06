@@ -65,16 +65,18 @@
                 </div>
             </article>
         </section>
-        <section class="popup">
-            <button class="popup__close-btn"></button>
-            <div class="popup__container">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__name" type="text" placeholder="Имя">
-                <input class="popup__about" type="text" placeholder="О себе">
-                <button class="popup__save-btn">Сохранить</button>
-            </div>
-        </section>
     </main>
+    <section class="popup">
+        <div class="popup__container">
+            <button class="popup__close-btn"></button>
+            <div class="popup__content">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__name popup__input" type="text" placeholder="Имя">
+                <input class="popup__about popup__input" type="text" placeholder="О себе">
+                <button class="popup__save-btn">Сохранить</button>
+            </div>    
+        </div>
+    </section>
     <footer class="footer">
         <p class="footer__text">&copy; 2022 Mesto Russia</p>
     </footer>
