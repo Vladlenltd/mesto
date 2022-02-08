@@ -9,7 +9,15 @@
     background-image: url(../../../image/add_btn.svg);
     transition: opasity 0.4s linear;
     cursor: pointer;
+    padding: 0;
 }
 .profile__add-btn:hover {
     opacity: 0.6;
+}
+@media screen and (max-width: 767px) {
+    .profile__add-btn {
+        margin: 36px auto 0;
+        background-image: url(../../../image/add-btn-282.svg);
+        width: 282px;
+    }
 }

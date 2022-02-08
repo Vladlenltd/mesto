@@ -1,6 +1,17 @@
 .header {
     max-width: 880px;
-    margin: 45px auto 0;
-    padding-bottom: 41px;
+    padding: 45px 0 41px 0;
     border-bottom: 1px solid #545454;
 }
+/* @media screen and (max-width: 1023px){
+    .header {
+        max-width: calc(100% - 140px*2);
+    }
+    
+}
+@media screen and (max-width: 767px) {
+    .header {
+        max-width: calc(100% - 280px*2);
+        padding-bottom: 32px;
+    }
+} */

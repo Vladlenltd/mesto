@@ -4,3 +4,8 @@
     max-width: 120px;
     min-height: 120px;
 }
+@media screen and (max-width: 767px) {
+    .profile__foto {
+        margin: 0 auto;
+    }
+}
