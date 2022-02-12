@@ -70,18 +70,18 @@
         <section class="popup">
             <div class="popup__container">
                 <button class="popup__close-btn"></button>
-                <form class="popup__content">
+                <form class="popup__content" name="popup">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__name popup__input" type="text" placeholder="Имя" value="Жак-Ив Кусто">
-                    <input class="popup__about popup__input" type="text" placeholder="О себе" value="Исследователь океана">
-                    <button class="popup__save-btn">Сохранить</button>
+                    <input class="popup__input popup__input_type_name" type="text" placeholder="Имя" value="Жак-Ив Кусто">
+                    <input class="popup__input popup__input_type_about" type="text" placeholder="О себе" value="Исследователь океана">
+                    <button class="popup__save-btn" type="submit">Сохранить</button>
                 </form>    
             </div>
         </section>
         <footer class="footer">
             <p class="footer__text">&copy; 2022 Mesto Russia</p>
         </footer>
-        <script src="./scripts/index.js"></script>
-    </div>    
+    </div>
+    <script src="./scripts/index.js"></script>
 </body>
 </html>
