@@ -16,8 +16,8 @@ popupCloseBtnElement.addEventListener('click', closePopupElement);
 // Находим форму в DOM
 const formElement = document.querySelector('.popup__content');
 // Находим поля формы в DOM
-const nameInput = formElement.querySelector('.popup__name');
-const jobInput = formElement.querySelector('.popup__about');
+const nameInput = formElement.querySelector('.popup__input_type_name');
+const jobInput = formElement.querySelector('.popup__input_type_about');
 //Переменная для кнопки "сохранить"
 const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');
 // Обработчик «отправки» формы, хотя пока
