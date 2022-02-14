@@ -22,6 +22,9 @@ const formElement = document.querySelector('.popup__content');
 // Находим поля формы в DOM
 const nameInput = formElement.querySelector('.popup__input_type_name');
 const jobInput = formElement.querySelector('.popup__input_type_about');
+//Добавляю значения поля формы в DOM
+nameInput.setAttribute('value', 'Жак-Ив Кусто');
+jobInput.setAttribute('value', 'Исследователь океана');
 //Переменная для кнопки "сохранить"
 const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');
 // Обработчик «отправки» формы, хотя пока
