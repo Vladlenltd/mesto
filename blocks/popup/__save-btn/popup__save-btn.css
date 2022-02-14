@@ -13,3 +13,9 @@
     cursor: pointer;
     opacity: 0.8;
 }
+@media screen and (max-width: 767px) {
+    .popup__save-btn {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

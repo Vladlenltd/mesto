@@ -27,7 +27,7 @@ const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function saveProfile (evt) {
-    evt.preventDefault();   
+    evt.preventDefault();
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
