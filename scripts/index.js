@@ -15,10 +15,46 @@ const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');//пе
 const popupImage = document.querySelector('.popup__element-add');//нашел popup добавления изображения
 const popupAddImage = document.querySelector('.profile__add-btn');//кнопка открытия попап добавления изображения
 const popupSaveImage = document.querySelector('.popup__image_add');//кнопка сохранение элемента
-
+const formImage = popupImage.querySelector('.popup__content');//нашел форму изображения в DOM
+const titleInput = formImage.querySelector('.popup__input_type_title');//поле формы изображения в DOM
+const linkInput = formImage.querySelector('.popup__input_type_link');//поле формы изображения в DOM
 //Popup фото
 const popupFoto = document.querySelector('.popup__foto');
-
+//массив карточек
+const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+//переменные для работы с массивов
+const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
+const itemElements = document.querySelector('.elements')//переменная для добавления изображения
+const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
+//наполняю картинками элемент
+initialCards.forEach((item) => {
+    console.log(item);
+});
 //функция открытия popup
 function openPopup(popup) {
     popup.classList.add('popup_opened');
