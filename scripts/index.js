@@ -1,32 +1,54 @@
 //Создаю открытие и закрытие popup
 // Выбираю DOM элементы
-const popupElement = document.querySelector('.popup');
-const popupCloseBtnElement = popupElement.querySelector('.popup__close-btn');
-const popupOpenBtnElement = document.querySelector('.profile__edit-btn');
- // Выберите элементы, куда должны быть вставлены значения полей
-const profileName = document.querySelector('.profile__title');
+//Popup профиля
+const popupElement = document.querySelector('.popup');//нашел popup элемент профиля
+const popupCloseBtnElement = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
+const popupOpenBtnElement = document.querySelector('.profile__edit-btn');//кнопка открытия
+const profileName = document.querySelector('.profile__title');//
 const profileJob = document.querySelector('.profile__subtitle');
+const formElement = popupElement.querySelector('.popup__content');//находим форму в DOM
+const nameInput = formElement.querySelector('.popup__input_type_name');//поля формы в DOM
+const jobInput = formElement.querySelector('.popup__input_type_about');//поля формы в DOM
+const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');//переменная для кнопки "сохранить"
 
-const openPopupElement = function() {
-    popupElement.classList.add('popup_opened');
+//Popup добавления изображения
+const popupImage = document.querySelector('.popup__element-add');//нашел popup добавления изображения
+const popupAddImage = document.querySelector('.profile__add-btn');//кнопка открытия попап добавления изображения
+const popupSaveImage = document.querySelector('.popup__image_add');//кнопка сохранение элемента
+
+//Popup фото
+const popupFoto = document.querySelector('.popup__foto');
+
+//функция открытия popup
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
 };
-const closePopupElement = function() {
-    popupElement.classList.remove('popup_opened');
-}
-//Добавляю обработчик событий
-popupOpenBtnElement.addEventListener('click', openPopupElement);
-popupCloseBtnElement.addEventListener('click', closePopupElement);
-// создаю возможность добавление, изменения и сохранения input полей
-// Находим форму в DOM
-const formElement = document.querySelector('.popup__content');
-// Находим поля формы в DOM
-const nameInput = formElement.querySelector('.popup__input_type_name');
-const jobInput = formElement.querySelector('.popup__input_type_about');
-//Добавляю значения поля формы в DOM
+
+//функция закрытия popup
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+};
+
+//открытие popup профиля
+popupOpenBtnElement.addEventListener('click', () => {
+        openPopup(popupElement);
+    });
+
+//открытие popup добавления картинки
+popupAddImage.addEventListener('click', () => {
+        openPopup(popupImage);
+    });
+
+//закрытие popup
+popupCloseBtnElement.forEach((button) => {
+        button.addEventListener('click', (evt) => {
+                closePopup(button.closest('.popup'));
+            });
+    });
+
+//добавляю значения поля формы в DOM
 nameInput.setAttribute('value', 'Жак-Ив Кусто');
 jobInput.setAttribute('value', 'Исследователь океана');
-//Переменная для кнопки "сохранить"
-const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function saveProfile (evt) {
@@ -34,7 +56,7 @@ function saveProfile (evt) {
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopupElement();
+    closePopup(popupElement);
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»

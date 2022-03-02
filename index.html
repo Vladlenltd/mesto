@@ -67,6 +67,7 @@
                 </article>
             </section>
         </main>
+        <!-- Popup изменения профиля -->
         <section class="popup">
             <div class="popup__container">
                 <button class="popup__close-btn"></button>
@@ -78,6 +79,30 @@
                 </form>    
             </div>
         </section>
+        <!-- Popup добавления картинки -->
+        <section class="popup popup__element-add">
+            <div class="popup__container">
+                <button class="popup__close-btn"></button>
+                <form class="popup__content" name="popup">
+                    <h2 class="popup__title ">Новое место</h2>
+                    <input class="popup__input popup__input_type_name" type="text" placeholder="Название" value="">
+                    <input class="popup__input popup__input_type_about" type="text" placeholder="Ссылка на картинку" value="">
+                    <button class="popup__save-btn popup__image_add" type="submit">Сохранить</button>
+                </form>    
+            </div>
+        </section>
+    <!-- Popup открытия картинки -->
+    <section class="popup popup__foto">
+        <div class="popup__container">
+            <button class="popup__close-btn"></button>
+            <form class="popup__content" name="popup">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__input popup__input_type_name" type="text" placeholder="Имя" value="">
+                <input class="popup__input popup__input_type_about" type="text" placeholder="О себе" value="">
+                <button class="popup__save-btn" type="submit">Сохранить</button>
+            </form>    
+        </div>
+    </section>
         <footer class="footer">
             <p class="footer__text">&copy; 2022 Mesto Russia</p>
         </footer>
