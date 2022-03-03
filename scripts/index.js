@@ -50,11 +50,19 @@ const initialCards = [
 //переменные для работы с массивов
 const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
 const itemElements = document.querySelector('.elements')//переменная для добавления изображения
-const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
 //наполняю картинками элемент
-initialCards.forEach((item) => {
-    console.log(item);
-});
+function createImage(item) {
+  const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
+  imageElement.querySelector('.element__item').src = item.link;
+  imageElement.querySelector('.element__item').alt = item.name;
+  imageElement.querySelector('.element__title').textContent = item.name;
+  itemElements.prepend(imageElement);
+}
+
+function renderImage(initialCards) {
+    initialCards.forEach((createImage));
+};
+renderImage(initialCards);
 //функция открытия popup
 function openPopup(popup) {
     popup.classList.add('popup_opened');
