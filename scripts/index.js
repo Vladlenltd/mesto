@@ -14,7 +14,7 @@ const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');//пе
 //Popup добавления изображения
 const popupImage = document.querySelector('.popup__element-add');//нашел popup добавления изображения
 const popupAddImage = document.querySelector('.profile__add-btn');//кнопка открытия попап добавления изображения
-const popupSaveImage = document.querySelector('.popup__image_add');//кнопка сохранение элемента
+const popupSaveImage = document.querySelector('.popup__image_add');//кнопка сохранение элемента submit
 const formImage = popupImage.querySelector('.popup__content');//нашел форму изображения в DOM
 const titleInput = formImage.querySelector('.popup__input_type_title');//поле формы изображения в DOM
 const linkInput = formImage.querySelector('.popup__input_type_link');//поле формы изображения в DOM
@@ -49,20 +49,30 @@ const initialCards = [
   ];
 //переменные для работы с массивов
 const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
-const itemElements = document.querySelector('.elements')//переменная для добавления изображения
+const itemElements = document.querySelector('.elements')//переменная для добавления карточки
 //наполняю картинками элемент
 function createImage(item) {
   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
-  imageElement.querySelector('.element__item').src = item.link;
-  imageElement.querySelector('.element__item').alt = item.name;
-  imageElement.querySelector('.element__title').textContent = item.name;
-  itemElements.prepend(imageElement);
+  imageElement.querySelector('.element__item').src = item.link;//ссылка на изображение из массива
+  imageElement.querySelector('.element__item').alt = item.name;//описание изображения из массива
+  imageElement.querySelector('.element__title').textContent = item.name;//название изображения из массива 
+  itemElements.prepend(imageElement);//добавляю элемент на страницу
 }
-
+//перебираю элементы массива
 function renderImage(initialCards) {
-    initialCards.forEach((createImage));
+  initialCards.forEach((createImage));
 };
 renderImage(initialCards);
+//функция добавления новой карточки
+function addImage() {
+  const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
+  imageElement.querySelector('.element__item').src = linkInput.value;//
+  imageElement.querySelector('.element__item').alt = titleInput.value;//
+  imageElement.querySelector('.element__title').textContent = titleInput.value;//название изображения 
+  itemElements.prepend(imageElement);//добавляю элемент на страницу
+};
+//
+formImage.addEventListener('submit',addImage);
 //функция открытия popup
 function openPopup(popup) {
     popup.classList.add('popup_opened');
