@@ -20,6 +20,33 @@ const titleInput = formImage.querySelector('.popup__input_type_title');//пол�
 const linkInput = formImage.querySelector('.popup__input_type_link');//поле формы изображения в DOM
 //Popup фото
 const popupFoto = document.querySelector('.popup__foto');
+
+//функция открытия popup
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+};
+
+//функция закрытия popup
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+};
+
+//открытие popup профиля
+popupOpenBtnElement.addEventListener('click', () => {
+        openPopup(popupElement);
+    });
+
+//открытие popup добавления картинки
+popupAddImage.addEventListener('click', () => {
+        openPopup(popupImage);
+    });
+
+//закрытие popup
+popupCloseBtnElement.forEach((button) => {
+        button.addEventListener('click', (evt) => {
+                closePopup(button.closest('.popup'));
+            });
+    });
 //массив карточек
 const initialCards = [
     {
@@ -57,48 +84,25 @@ function createImage(item) {
   imageElement.querySelector('.element__item').alt = item.name;//описание изображения из массива
   imageElement.querySelector('.element__title').textContent = item.name;//название изображения из массива 
   itemElements.prepend(imageElement);//добавляю элемент на страницу
+  return imageElement;
 }
-//перебираю элементы массива
-function renderImage(initialCards) {
-  initialCards.forEach((createImage));
-};
-renderImage(initialCards);
 //функция добавления новой карточки
-function addImage() {
+function addImage(evt) {
+  evt.preventDefault();
   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
   imageElement.querySelector('.element__item').src = linkInput.value;//
   imageElement.querySelector('.element__item').alt = titleInput.value;//
   imageElement.querySelector('.element__title').textContent = titleInput.value;//название изображения 
   itemElements.prepend(imageElement);//добавляю элемент на страницу
+  closePopup(popupImage);
 };
-//
-formImage.addEventListener('submit',addImage);
-//функция открытия popup
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
+formImage.addEventListener('submit', addImage);
+//перебираю элементы массива
+function renderImage(initialCards) {
+  initialCards.forEach((createImage));
 };
-
-//функция закрытия popup
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
-};
-
-//открытие popup профиля
-popupOpenBtnElement.addEventListener('click', () => {
-        openPopup(popupElement);
-    });
-
-//открытие popup добавления картинки
-popupAddImage.addEventListener('click', () => {
-        openPopup(popupImage);
-    });
-
-//закрытие popup
-popupCloseBtnElement.forEach((button) => {
-        button.addEventListener('click', (evt) => {
-                closePopup(button.closest('.popup'));
-            });
-    });
+renderImage(initialCards);
+// удаление картинки
 
 //добавляю значения поля формы в DOM
 nameInput.setAttribute('value', 'Жак-Ив Кусто');
