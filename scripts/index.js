@@ -88,6 +88,8 @@ function createImage(item) {
 const likeBtnElement = imageElement.querySelector('.element__like-btn');
 likeBtnElement.addEventListener('click', likeCard);
 // удаление картинки
+const delBtnElement = imageElement.querySelector('.element__delete-btn');
+delBtnElement.addEventListener('click', delCard);
   return imageElement;
 }
 //функция добавления новой карточки
@@ -110,7 +112,10 @@ renderImage(initialCards);
 function likeCard(evt) {
   evt.target.classList.toggle('element__like-btn_active');
 };
-
+//функция удаления карточки
+function delCard(evt) {
+  evt.target.closest('.element').remove();
+};
 //добавляю значения поля формы в DOM
 nameInput.setAttribute('value', 'Жак-Ив Кусто');
 jobInput.setAttribute('value', 'Исследователь океана');
