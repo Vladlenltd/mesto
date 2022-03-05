@@ -76,7 +76,7 @@ const initialCards = [
   ];
 //переменные для работы с массивов
 const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
-const itemElements = document.querySelector('.elements')//переменная для добавления карточки
+const itemElements = document.querySelector('.elements');//переменная для добавления карточки
 //наполняю картинками элемент
 function createImage(item) {
   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
@@ -84,25 +84,32 @@ function createImage(item) {
   imageElement.querySelector('.element__item').alt = item.name;//описание изображения из массива
   imageElement.querySelector('.element__title').textContent = item.name;//название изображения из массива 
   itemElements.prepend(imageElement);//добавляю элемент на страницу
+//слушатель кнопки "мне нравиться"
+const likeBtnElement = imageElement.querySelector('.element__like-btn');
+likeBtnElement.addEventListener('click', likeCard);
+// удаление картинки
   return imageElement;
 }
 //функция добавления новой карточки
 function addImage(evt) {
   evt.preventDefault();
   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
-  imageElement.querySelector('.element__item').src = linkInput.value;//
-  imageElement.querySelector('.element__item').alt = titleInput.value;//
+  imageElement.querySelector('.element__item').src = linkInput.value;//ссылка на изображение
+  imageElement.querySelector('.element__item').alt = titleInput.value;//ссылка на описание
   imageElement.querySelector('.element__title').textContent = titleInput.value;//название изображения 
   itemElements.prepend(imageElement);//добавляю элемент на страницу
   closePopup(popupImage);
 };
-formImage.addEventListener('submit', addImage);
+formImage.addEventListener('submit', addImage);//прикрепляю обработчик к форме
 //перебираю элементы массива
 function renderImage(initialCards) {
   initialCards.forEach((createImage));
 };
 renderImage(initialCards);
-// удаление картинки
+//функция кнопки "мне нравится"
+function likeCard(evt) {
+  evt.target.classList.toggle('element__like-btn_active');
+};
 
 //добавляю значения поля формы в DOM
 nameInput.setAttribute('value', 'Жак-Ив Кусто');

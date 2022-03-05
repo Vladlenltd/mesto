@@ -4,7 +4,7 @@
     height: 19px;
     border: none;
     background-color: inherit;
-    background-image: url(../../../image/union.svg);
+    background-image: url(../../../../image/Union.svg);
     transition: opasity 0.4s linear;
     cursor: pointer;
 }
