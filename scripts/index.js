@@ -19,7 +19,9 @@ const formImage = popupImage.querySelector('.popup__content');//нашел фо�
 const titleInput = formImage.querySelector('.popup__input_type_title');//поле формы изображения в DOM
 const linkInput = formImage.querySelector('.popup__input_type_link');//поле формы изображения в DOM
 //Popup фото
-const popupFoto = document.querySelector('.popup__foto');
+const popupFoto = document.querySelector('.popup__foto');//нашел popup фото
+const popupPicture = popupFoto.querySelector('.popup__img');//нашел картинку
+const popupCaption = popupFoto.querySelector('.popup__caption');//нашел подпись
 
 //функция открытия popup
 function openPopup(popup) {
@@ -40,7 +42,6 @@ popupOpenBtnElement.addEventListener('click', () => {
 popupAddImage.addEventListener('click', () => {
         openPopup(popupImage);
     });
-
 //закрытие popup
 popupCloseBtnElement.forEach((button) => {
         button.addEventListener('click', (evt) => {
@@ -77,9 +78,11 @@ const initialCards = [
 //переменные для работы с массивов
 const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
 const itemElements = document.querySelector('.elements');//переменная для добавления карточки
+const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
 //наполняю картинками элемент
 function createImage(item) {
   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
+
   imageElement.querySelector('.element__item').src = item.link;//ссылка на изображение из массива
   imageElement.querySelector('.element__item').alt = item.name;//описание изображения из массива
   imageElement.querySelector('.element__title').textContent = item.name;//название изображения из массива 
@@ -90,6 +93,10 @@ likeBtnElement.addEventListener('click', likeCard);
 // удаление картинки
 const delBtnElement = imageElement.querySelector('.element__delete-btn');
 delBtnElement.addEventListener('click', delCard);
+//открытие popup картинки
+const fullViewBtn = imageElement.querySelector('.element__item')
+fullViewBtn.addEventListener('click', FullViewPicture);
+
   return imageElement;
 }
 //функция добавления новой карточки
@@ -115,6 +122,13 @@ function likeCard(evt) {
 //функция удаления карточки
 function delCard(evt) {
   evt.target.closest('.element').remove();
+};
+//функция FullViewPicture
+function FullViewPicture (evt) {
+  const popupImg = evt.target.closest('.element__item');
+  popupPicture.src = popupImg.src
+  popupCaption.textContent = popupImg.alt
+  openPopup(popupFoto);
 };
 //добавляю значения поля формы в DOM
 nameInput.setAttribute('value', 'Жак-Ив Кусто');
