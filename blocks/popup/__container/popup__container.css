@@ -4,7 +4,6 @@
     border-radius: 10px;
     width: 100%;
     max-width: 430px;
-    min-height: 330px;
     margin: calc(100vh - 600px) auto;
     position: relative;
 }
