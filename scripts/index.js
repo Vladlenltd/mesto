@@ -12,14 +12,14 @@ const jobInput = formElement.querySelector('.popup__input_type_about');//пол�
 const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');//переменная для кнопки "сохранить"
 
 //Popup добавления изображения
-const popupImage = document.querySelector('.popup__element');//нашел popup добавления изображения
+const popupImage = document.querySelector('.popup__picture');//нашел popup добавления изображения
 const popupAddImage = document.querySelector('.profile__add-btn');//кнопка открытия попап добавления изображения
 const popupSaveImage = document.querySelector('.popup__image-add');//кнопка сохранение элемента submit
 const formImage = popupImage.querySelector('.popup__content');//нашел форму изображения в DOM
 const titleInput = formImage.querySelector('.popup__input_type_title');//поле формы изображения в DOM
 const linkInput = formImage.querySelector('.popup__input_type_link');//поле формы изображения в DOM
 //Popup фото
-const popupFoto = document.querySelector('.popup__image');//нашел popup фото
+const popupFoto = document.querySelector('.popup__card');//нашел popup фото
 const popupPicture = popupFoto.querySelector('.popup__img');//нашел картинку
 const popupCaption = popupFoto.querySelector('.popup__caption');//нашел подпись
 
