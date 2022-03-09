@@ -2,14 +2,14 @@
 // Выбираю DOM элементы
 //Popup профиля
 const popupElementProfile = document.querySelector('.popup');//нашел popup элемент профиля
-const popupCloseBtnElement = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
+const popupCloseBtnElementList = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
 const popupOpenBtnElement = document.querySelector('.profile__edit-btn');//кнопка открытия
 const profileName = document.querySelector('.profile__title');//
 const profileJob = document.querySelector('.profile__subtitle');
-const formElement = popupElementProfile.querySelector('.popup__content');//находим форму в DOM
-const nameInput = formElement.querySelector('.popup__input_type_name');//поля формы в DOM
-const jobInput = formElement.querySelector('.popup__input_type_about');//поля формы в DOM
-const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');//переменная для кнопки "сохранить"
+const formElementProfile = popupElementProfile.querySelector('.popup__content');//находим форму в DOM
+const nameInput = formElementProfile.querySelector('.popup__input_type_name');//поля формы в DOM
+const jobInput = formElementProfile.querySelector('.popup__input_type_about');//поля формы в DOM
+const popupSaveBtnElement = formElementProfile.querySelector('.popup__save-btn');//переменная для кнопки "сохранить"
 
 //Popup добавления изображения
 const popupImage = document.querySelector('.popup_picture');//нашел popup добавления изображения
@@ -43,7 +43,7 @@ popupAddImage.addEventListener('click', () => {
         openPopup(popupImage);
     });
 //закрытие popup
-popupCloseBtnElement.forEach((button) => {
+popupCloseBtnElementList.forEach((button) => {
         button.addEventListener('click', (evt) => {
                 closePopup(button.closest('.popup'));
             });
@@ -144,4 +144,4 @@ function saveProfile (evt) {
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', saveProfile);
+formElementProfile.addEventListener('submit', saveProfile);
