@@ -1,12 +1,12 @@
 //Создаю открытие и закрытие popup
 // Выбираю DOM элементы
 //Popup профиля
-const popupElement = document.querySelector('.popup');//нашел popup элемент профиля
+const popupElementProfile = document.querySelector('.popup');//нашел popup элемент профиля
 const popupCloseBtnElement = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
 const popupOpenBtnElement = document.querySelector('.profile__edit-btn');//кнопка открытия
 const profileName = document.querySelector('.profile__title');//
 const profileJob = document.querySelector('.profile__subtitle');
-const formElement = popupElement.querySelector('.popup__content');//находим форму в DOM
+const formElement = popupElementProfile.querySelector('.popup__content');//находим форму в DOM
 const nameInput = formElement.querySelector('.popup__input_type_name');//поля формы в DOM
 const jobInput = formElement.querySelector('.popup__input_type_about');//поля формы в DOM
 const popupSaveBtnElement = formElement.querySelector('.popup__save-btn');//переменная для кнопки "сохранить"
@@ -35,7 +35,7 @@ function closePopup(popup) {
 
 //открытие popup профиля
 popupOpenBtnElement.addEventListener('click', () => {
-        openPopup(popupElement);
+        openPopup(popupElementProfile);
     });
 
 //открытие popup добавления картинки
@@ -140,7 +140,7 @@ function saveProfile (evt) {
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup(popupElement);
+    closePopup(popupElementProfile);
 }
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
