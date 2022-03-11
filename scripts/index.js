@@ -86,7 +86,7 @@ function createImage(item) {
   imageElement.querySelector('.element__item').src = item.link;//ссылка на изображение из массива
   imageElement.querySelector('.element__item').alt = item.name;//описание изображения из массива
   imageElement.querySelector('.element__title').textContent = item.name;//название изображения из массива 
-  itemElements.prepend(imageElement);//добавляю элемент на страницу
+  
 //слушатель кнопки "мне нравиться"
 const likeBtnElement = imageElement.querySelector('.element__like-btn');
 likeBtnElement.addEventListener('click', likeCard);
@@ -98,7 +98,10 @@ const fullViewBtn = imageElement.querySelector('.element__item')
 fullViewBtn.addEventListener('click', FullViewPicture);
 
   return imageElement;
-}
+};
+function renderCard(item) {
+  itemElements.prepend(createImage(item));
+};
 //функция добавления новой карточки
 function addImage(evt) {
   evt.preventDefault();
@@ -113,7 +116,7 @@ function addImage(evt) {
 formImage.addEventListener('submit', addImage);//прикрепляю обработчик к форме
 //перебираю элементы массива
 function renderImage(initialCards) {
-  initialCards.forEach((createImage));
+  initialCards.forEach((renderCard));
 };
 renderImage(initialCards);
 //функция кнопки "мне нравится"
