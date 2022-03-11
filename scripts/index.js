@@ -107,6 +107,7 @@ function addImage(evt) {
   imageElement.querySelector('.element__item').alt = titleInput.value;//ссылка на описание
   imageElement.querySelector('.element__title').textContent = titleInput.value;//название изображения 
   itemElements.prepend(imageElement);//добавляю элемент на страницу
+  clearForm();
   closePopup(popupImage);
 };
 formImage.addEventListener('submit', addImage);//прикрепляю обработчик к форме
@@ -129,6 +130,10 @@ function FullViewPicture (evt) {
   popupPicture.src = popupImg.src
   popupCaption.textContent = popupImg.alt
   openPopup(popupFoto);
+};
+function clearForm() {
+  linkInput.value = '';
+  titleInput.value = '';
 };
 //добавляю значения поля формы в DOM
 nameInput.setAttribute('value', 'Жак-Ив Кусто');
