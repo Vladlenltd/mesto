@@ -80,13 +80,14 @@ const itemTemplateContent = document.querySelector('.item-template').content;//�
 const itemElements = document.querySelector('.elements');//переменная для добавления карточки
 const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
 //наполняю картинками элемент
-function createImage(item) {
+function createImage(source) {
+  const itemTemplateContent = document.querySelector('.item-template').content;//получаю с
   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
-
-  imageElement.querySelector('.element__item').src = item.link;//ссылка на изображение из массива
-  imageElement.querySelector('.element__item').alt = item.name;//описание изображения из массива
-  imageElement.querySelector('.element__title').textContent = item.name;//название изображения из массива 
-  
+  const cardData = imageElement.querySelector('.element__item');
+  const cardTitle = imageElement.querySelector('.element__title');
+  cardData.src = source.link;
+  cardData.alt = source.name;
+  cardTitle.textContent = source.name;
 //слушатель кнопки "мне нравиться"
 const likeBtnElement = imageElement.querySelector('.element__like-btn');
 likeBtnElement.addEventListener('click', likeCard);
@@ -99,17 +100,14 @@ fullViewBtn.addEventListener('click', FullViewPicture);
 
   return imageElement;
 };
-function renderCard(item) {
-  itemElements.prepend(createImage(item));
+
+function renderCard(source) {
+  itemElements.prepend(createImage(source));
 };
 //функция добавления новой карточки
 function addImage(evt) {
   evt.preventDefault();
-  const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
-  imageElement.querySelector('.element__item').src = linkInput.value;//ссылка на изображение
-  imageElement.querySelector('.element__item').alt = titleInput.value;//ссылка на описание
-  imageElement.querySelector('.element__title').textContent = titleInput.value;//название изображения 
-  itemElements.prepend(imageElement);//добавляю элемент на страницу
+  addCard();
   clearForm();
   closePopup(popupImage);
 };
@@ -134,6 +132,11 @@ function FullViewPicture (evt) {
   popupCaption.textContent = popupImg.alt
   openPopup(popupFoto);
 };
+// function addCard() {
+//   const newCard = createCard(titleInput, linkInput);
+//   itemElements.prepend(newCard)
+// };
+// console.log(newCard)
 function clearForm() {
   linkInput.value = '';
   titleInput.value = '';
