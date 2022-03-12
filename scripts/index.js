@@ -107,7 +107,7 @@ function renderCard(source) {
 //функция добавления новой карточки
 function addImage(evt) {
   evt.preventDefault();
-  addCard();
+  renderCard(linkInput.value, titleInput.value)
   clearForm();
   closePopup(popupImage);
 };
@@ -132,11 +132,6 @@ function FullViewPicture (evt) {
   popupCaption.textContent = popupImg.alt
   openPopup(popupFoto);
 };
-// function addCard() {
-//   const newCard = createCard(titleInput, linkInput);
-//   itemElements.prepend(newCard)
-// };
-// console.log(newCard)
 function clearForm() {
   linkInput.value = '';
   titleInput.value = '';
