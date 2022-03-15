@@ -78,10 +78,8 @@ const initialCards = [
 //переменные для работы с массивов
 const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
 const itemElements = document.querySelector('.elements');//переменная для добавления карточки
-const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
 //наполняю картинками элемент
 function createImage(name, link) {
-  const itemTemplateContent = document.querySelector('.item-template').content;//получаю с
   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
   const cardData = imageElement.querySelector('.element__item');
   const cardTitle = imageElement.querySelector('.element__title');
