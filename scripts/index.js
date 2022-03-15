@@ -1,7 +1,7 @@
 //Создаю открытие и закрытие popup
 // Выбираю DOM элементы
 //Popup профиля
-const popupElementProfile = document.querySelector('.popup__profile');//нашел popup элемент профиля
+const popupElementProfile = document.querySelector('.popup_profile');//нашел popup элемент профиля
 const popupCloseBtnElementList = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
 const popupOpenBtnElement = document.querySelector('.profile__edit-btn');//кнопка открытия
 const profileName = document.querySelector('.profile__title');//
