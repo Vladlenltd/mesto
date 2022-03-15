@@ -5,7 +5,8 @@
     border: 1px solid white;
     background-color: inherit;
     background-image: url(../../../image/edit_btn.svg);
-    background-size: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
     transition: opasity 0.4s linear;
     cursor: pointer;
     margin-left: 18px;
