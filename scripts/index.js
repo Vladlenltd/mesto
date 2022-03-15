@@ -36,6 +36,8 @@ function closePopup(popup) {
 //открытие popup профиля
 popupOpenBtnElement.addEventListener('click', () => {
         openPopup(popupElementProfile);
+        nameInput.value = profileName.textContent;
+        jobInput.value = profileJob.textContent;
     });
 
 //открытие popup добавления картинки
@@ -136,9 +138,6 @@ function clearForm() {
   linkInput.value = '';
   titleInput.value = '';
 };
-//добавляю значения поля формы в DOM
-nameInput.setAttribute('value', 'Жак-Ив Кусто');
-jobInput.setAttribute('value', 'Исследователь океана');
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function saveProfile (evt) {
