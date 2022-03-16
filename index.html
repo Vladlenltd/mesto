@@ -1,80 +1,109 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css" />
     <title>Mesto-travel</title>
-</head>
-<body class="page">
+  </head>
+  <body class="page">
     <div class="container">
-        <header class="header">
-            <img src="./image/logo.svg" alt="слово место написаное транслитом" class="header__logo">
-        </header>
-        <main class="main">
-            <section class="profile">
-                <img src="./image/profile.jpg" alt="Жак-Ив Кусто" class="profile__foto">
-                <article class="profile__info">
-                    <div class="profile__wrapper">
-                        <h1 class="profile__title">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-btn"></button>
-                    </div>
-                    <p class="profile__subtitle">Исследователь океана</p>
-                </article>
-                <button class="profile__add-btn"></button>
-            </section>
-            <section class="elements">
-            </section>
-        </main>
-        <!-- Popup изменения профиля -->
-        <section class="popup popup__profile">
-            <div class="popup__container">
-                <button class="popup__close-btn"></button>
-                <form class="popup__content" name="popup">
-                    <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__input popup__input_type_name" type="text" placeholder="Имя" value="">
-                    <input class="popup__input popup__input_type_about" type="text" placeholder="О себе" value="">
-                    <button class="popup__save-btn" type="submit">Сохранить</button>
-                </form>    
+      <header class="header">
+        <img
+          src="./image/logo.svg"
+          alt="слово место написаное транслитом"
+          class="header__logo"
+        />
+      </header>
+      <main class="main">
+        <section class="profile">
+          <img
+            src="./image/profile.jpg"
+            alt="Жак-Ив Кусто"
+            class="profile__foto"
+          />
+          <article class="profile__info">
+            <div class="profile__wrapper">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button class="profile__edit-btn"></button>
             </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </article>
+          <button class="profile__add-btn"></button>
         </section>
-        <!-- Popup добавления картинки -->
-        <section class="popup popup_picture">
-            <div class="popup__container">
-                <button class="popup__close-btn"></button>
-                <form class="popup__content" name="image">
-                    <h2 class="popup__title">Новое место</h2>
-                    <input class="popup__input popup__input_type_name popup__input_type_title" type="text" placeholder="Название" value="">
-                    <input class="popup__input popup__input_type_about popup__input_type_link" type="text" placeholder="Ссылка на картинку" value="">
-                    <button class="popup__save-btn popup__image-add" type="submit">Сохранить</button>
-                </form>    
-            </div>
-        </section>
-        <!-- Popup открытия картинки -->
-        <section class="popup popup_card">
-            <div class="popup__foto-container">
-                <button class="popup__close-btn"></button>
-                <figure class="popup__figure">
-                    <img class="popup__img" src="#" alt="">
-                    <figcaption class="popup__caption"></figcaption>
-                </figure>
-            </div>
-        </section>
-        <footer class="footer">
-            <p class="footer__text">&copy; 2022 Mesto Russia</p>
-        </footer>
+        <section class="elements"></section>
+      </main>
+      <!-- Popup изменения профиля -->
+      <section class="popup popup__profile">
+        <div class="popup__container">
+          <button class="popup__close-btn"></button>
+          <form class="popup__content" name="popup">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input
+              class="popup__input popup__input_type_name"
+              type="text"
+              placeholder="Имя"
+              value=""
+            />
+            <input
+              class="popup__input popup__input_type_about"
+              type="text"
+              placeholder="О себе"
+              value=""
+            />
+            <button class="popup__save-btn" type="submit">Сохранить</button>
+          </form>
+        </div>
+      </section>
+      <!-- Popup добавления картинки -->
+      <section class="popup popup_picture">
+        <div class="popup__container">
+          <button class="popup__close-btn"></button>
+          <form class="popup__content" name="image">
+            <h2 class="popup__title">Новое место</h2>
+            <input
+              class="popup__input popup__input_type_name popup__input_type_title"
+              type="text"
+              placeholder="Название"
+              value=""
+            />
+            <input
+              class="popup__input popup__input_type_about popup__input_type_link"
+              type="text"
+              placeholder="Ссылка на картинку"
+              value=""
+            />
+            <button class="popup__save-btn popup__image-add" type="submit">
+              Создать
+            </button>
+          </form>
+        </div>
+      </section>
+      <!-- Popup открытия картинки -->
+      <section class="popup popup_card">
+        <div class="popup__foto-container">
+          <button class="popup__close-btn"></button>
+          <figure class="popup__figure">
+            <img class="popup__img" src="#" alt="" />
+            <figcaption class="popup__caption"></figcaption>
+          </figure>
+        </div>
+      </section>
+      <footer class="footer">
+        <p class="footer__text">&copy; 2022 Mesto Russia</p>
+      </footer>
     </div>
     <template class="item-template">
-        <article class="element">
-            <button class="element__delete-btn" type="button"></button>
-            <img src="#" alt="" class="element__item">
-            <div class="element__wrapper">
-                <h2 class="element__title"></h2>
-                <button class="element__like-btn" type="button"></button>
-            </div>
-        </article>
+      <article class="element">
+        <button class="element__delete-btn" type="button"></button>
+        <img src="#" alt="" class="element__item" />
+        <div class="element__wrapper">
+          <h2 class="element__title"></h2>
+          <button class="element__like-btn" type="button"></button>
+        </div>
+      </article>
     </template>
     <script src="./scripts/index.js"></script>
-</body>
+  </body>
 </html>
