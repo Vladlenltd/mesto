@@ -31,10 +31,10 @@
         <section class="popup popup_profile">
             <div class="popup__container">
                 <button class="popup__close-btn"></button>
-                <form class="popup__content" name="popup">
+                <form class="popup__content" name="profile">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input class="popup__input popup__input_type_name" type="text" placeholder="Имя" value="">
-                    <input class="popup__input popup__input_type_about" type="text" placeholder="О себе" value="">
+                    <input class="popup__input popup__input_type_name" type="text" placeholder="Имя" value="" minlength="2" maxlength="40" required>
+                    <input class="popup__input popup__input_type_about" type="text" placeholder="О себе" value="" minlength="2" maxlength="200" required>
                     <button class="popup__save-btn" type="submit">Сохранить</button>
                 </form>    
             </div>
@@ -45,8 +45,8 @@
                 <button class="popup__close-btn"></button>
                 <form class="popup__content" name="image">
                     <h2 class="popup__title">Новое место</h2>
-                    <input class="popup__input popup__input_type_name popup__input_type_title" type="text" placeholder="Название" value="">
-                    <input class="popup__input popup__input_type_about popup__input_type_link" type="text" placeholder="Ссылка на картинку" value="">
+                    <input class="popup__input popup__input_type_name popup__input_type_title" type="text" placeholder="Название" value="" minlength="2" maxlength="30" required>
+                    <input class="popup__input popup__input_type_about popup__input_type_link" type="url" placeholder="Ссылка на картинку" value="" required>
                     <button class="popup__save-btn popup__image-add" type="submit">Создать</button>
                 </form>    
             </div>
@@ -76,5 +76,6 @@
         </article>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>
