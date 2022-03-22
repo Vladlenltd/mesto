@@ -9,7 +9,7 @@ const profileJob = document.querySelector('.profile__subtitle');
 const formElementProfile = popupElementProfile.querySelector('.popup__content');//находим форму в DOM
 const nameInput = formElementProfile.querySelector('.popup__input_type_name');//поля формы в DOM
 const jobInput = formElementProfile.querySelector('.popup__input_type_about');//поля формы в DOM
-const popupSaveBtnElement = formElementProfile.querySelector('.popup__save-btn');//переменная для кнопки "сохранить"
+const popupSaveBtnElement = formElementProfile.querySelector('.popup__button');//переменная для кнопки "сохранить"
 
 //Popup добавления изображения
 const popupImage = document.querySelector('.popup_picture');//нашел popup добавления изображения
