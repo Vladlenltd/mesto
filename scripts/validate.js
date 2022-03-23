@@ -13,16 +13,16 @@
 
 const showError = (formElement, inputElement, errorMessage) => {
     errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
+    inputElement.classList.add('popup__input_type_error_active');
     errorElement.textContent = errorMessage;
     errorElement.classList.add('popup__error_visible');
 };
 
 const hideError = (formElement, inputElement) => {
     errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
+    inputElement.classList.remove('popup__input_type_error_active');
     errorElement.textContent = " ";
-    errorElement.classList.remove('popup__error_visible');
+    errorElement.classList.remove('');
 };
 
 const checkValidity = (formElement, inputElement) => {
