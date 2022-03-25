@@ -6,32 +6,31 @@ const enableValidation =  {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type-error_active',
-    errorClass: 'popup__input_type_error_active'
- };
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input_error'
+};
 
-// const showError = (formElement, inputElement, errorMessage) => {
-//     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//     inputElement.textContent = errorMessage;
-//     inputElement.classList.add('.popup__input_type-error');
-//     errorElement.classList.add('popup__input_type-error_active')
+const showError = (formElement, inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.add('popup__input_type_error');
+    errorElement.classList.add('popup__input_error_active');
+    errorElement.textContent = errorMessage;
+};
 
-//     console.log(errorMessage)
-//     console.log(errorElement)
-//     console.log(`.${inputElement.id}-error`);
-
-// };
-// const hideError = (formElement, inputElement) => {
-//     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-// };
+const hideError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove('popup__input_type_error');
+    errorElement.classList.remove('popup__input_error_active');
+    errorElement.textContent = '';
+};
 // проверка на валидность
 const checkValidity = (formElement, inputElement) => {
-    // const errorMessage= inputElement.validationMessage;
-    // if(!inputElement.validity.valid) {
-    //     showError(formElement, inputElement, errorMessage);
-    // } else {
-    //     hideError(formElement, inputElement); 
-    // };
+    const errorMessage= inputElement.validationMessage;
+    if(!inputElement.validity.valid) {
+        showError(formElement, inputElement, errorMessage);
+    } else {
+        hideError(formElement, inputElement); 
+    };
 };
 
 const setEventListener = (formElement) => {
