@@ -4,7 +4,7 @@
 const popupElementProfile = document.querySelector('.popup_profile');//нашел popup элемент профиля
 const popupCloseBtnElementList = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
 const popupOpenBtnElement = document.querySelector('.profile__edit-btn');//кнопка открытия
-const profileName = document.querySelector('.profile__title');//
+const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
 const formElementProfile = popupElementProfile.querySelector('.popup__content');//находим форму в DOM
 const nameInput = formElementProfile.querySelector('.popup__input_type_name');//поля формы в DOM
@@ -18,6 +18,7 @@ const popupSaveImage = document.querySelector('.popup__image-add');//кнопк�
 const formImage = popupImage.querySelector('.popup__content');//нашел форму изображения в DOM
 const titleInput = formImage.querySelector('.popup__input_type_title');//поле формы изображения в DOM
 const linkInput = formImage.querySelector('.popup__input_type_link');//поле формы изображения в DOM
+
 //Popup фото
 const popupFoto = document.querySelector('.popup_card');//нашел popup фото
 const popupPicture = popupFoto.querySelector('.popup__img');//нашел картинку
@@ -27,17 +28,27 @@ const popupCaption = popupFoto.querySelector('.popup__caption');//нашел п�
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEsc);
-};
-//функция закрытия popup
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
+  };
+  //функция закрытия popup
+  function closePopup(popup) {
+    popup.classList.remove('popup_opened');
 };
 // закрытие popup нажатием кнопки ESC
-function closePopupByEsc(evt) {
+const closePopupByEsc = (evt) => {
   if (evt.key === 'Escape') {
     closePopup(document.querySelector('.popup_opened'))
   }
 };
+//закрытие popup кликом на оверлей
+const closePopupByClickToOverlay = (evt) => {
+  if (evt.target !== evt.currentTarget) {
+    return
+  }
+  closePopup(document.querySelector('.popup_opened'));
+};
+popupElementProfile.addEventListener('click', closePopupByClickToOverlay);
+popupImage.addEventListener('click', closePopupByClickToOverlay);
+popupFoto.addEventListener('click', closePopupByClickToOverlay);
 //открытие popup профиля
 popupOpenBtnElement.addEventListener('click', () => {
         openPopup(popupElementProfile);
