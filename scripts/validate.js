@@ -47,19 +47,6 @@ const toggleButtonState = (inputList, buttonElement) => {
         buttonElement.removeAttribute('disable');
     }
 };
-// const hasInvalidInput = (inputList) => {
-//     return Array.from(inputList).some((inputElement) => {
-//         return !inputElement.validity.valid;
-//     })
-// };
-
-// const toggleButtonState = (inputList, buttonElement) => {
-//     if (hasInvalidInput(inputList)) {
-//         buttonElement.classList.add('popup__button_disable');
-//     } else {
-//         buttonElement.classList.remove('popup__button_disable');
-//     }
-// };
 const setEventListener = (formElement) => {
     const inputList = formElement.querySelectorAll('.popup__input');
     const buttonElement = formElement.querySelector('.popup__button');
@@ -71,8 +58,6 @@ const setEventListener = (formElement) => {
         });
     });
 };
-
-
 
 //проверка валидации
 const enableVlaidation = () => {
