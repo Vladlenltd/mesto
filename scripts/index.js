@@ -47,6 +47,7 @@ popupAddImage.addEventListener('click', () => {
 //закрытие popup
 popupCloseBtnElementList.forEach((button) => {
         button.addEventListener('click', (evt) => {
+          if (!evt.target.closest('.popup__content'));
                 closePopup(button.closest('.popup'));
             });
     });
