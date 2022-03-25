@@ -26,13 +26,18 @@ const popupCaption = popupFoto.querySelector('.popup__caption');//нашел п�
 //функция открытия popup
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupByEsc);
 };
-
 //функция закрытия popup
 function closePopup(popup) {
-    popup.classList.remove('popup_opened');
+  popup.classList.remove('popup_opened');
 };
-
+// закрытие popup нажатием кнопки ESC
+function closePopupByEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'))
+  }
+};
 //открытие popup профиля
 popupOpenBtnElement.addEventListener('click', () => {
         openPopup(popupElementProfile);
@@ -44,10 +49,9 @@ popupOpenBtnElement.addEventListener('click', () => {
 popupAddImage.addEventListener('click', () => {
         openPopup(popupImage);
     });
-//закрытие popup
+//закрытие popup 
 popupCloseBtnElementList.forEach((button) => {
         button.addEventListener('click', (evt) => {
-          if (!evt.target.closest('.popup__content'));
                 closePopup(button.closest('.popup'));
             });
     });
