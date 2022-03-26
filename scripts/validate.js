@@ -1,67 +1,70 @@
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
 
-const enableValidation =  {
+const setEnableValidation =  {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
+    inactiveButtonClass: 'popup__button_disable',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input_error'
 };
+console.log(setEnableValidation)
+console.log(setEnableValidation['formSelector'])
 // при вводе текста в input появляется текст ошибки
-const showError = (formElement, inputElement, errorMessage) => {
+const showError = (formElement, inputElement, errorMessage, setEnableValidation) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
-    errorElement.classList.add('popup__input_error');
+    inputElement.classList.add(setEnableValidation['inputErrorClass']);
+    errorElement.classList.add(setEnableValidation['errorClass']);
     errorElement.textContent = errorMessage;
 };
+console.log(setEnableValidation['inputErrorClass'])
 // убирает текст ошибки если input валиден
-const hideError = (formElement, inputElement) => {
+const hideError = (formElement, inputElement, setEnableValidation) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.classList.remove('popup__input_error');
+    inputElement.classList.remove(setEnableValidation['inputErrorClass']);
+    errorElement.classList.remove(setEnableValidation['errorClass'])
     errorElement.textContent = '';
 };
 // проверка на валидность
-const checkValidity = (formElement, inputElement) => {
+const checkValidity = (formElement, inputElement, setEnableValidation) => {
     const errorMessage= inputElement.validationMessage;
 
     if(!inputElement.validity.valid) {
-        showError(formElement, inputElement, errorMessage);
+        showError(formElement, inputElement, errorMessage, setEnableValidation);
     } else {
-        hideError(formElement, inputElement); 
+        hideError(formElement, inputElement, setEnableValidation); 
     };
 };
+console.log(setEnableValidation['inactiveButtonClass'])
 // проверка валидации во всех input
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, setEnableValidation) => {
     const hasInvalidInput = Array.from(inputList).some((inputElement) => {
         return !inputElement.validity.valid;
     });
-
-    if (hasInvalidInput) {
-        buttonElement.classList.add('popup__button_disable');
+    if (hasInvalidInput, setEnableValidation) {
+        buttonElement.classList.add(setEnableValidation['inactiveButtonClass']);
         buttonElement.setAttribute('disable', true);
     } else {
-        buttonElement.classList.remove('popup__button_disable');
+        buttonElement.classList.remove(setEnableValidation['inactiveButtonClass']);
         buttonElement.removeAttribute('disable');
     }
 };
 const setEventListener = (formElement) => {
-    const inputList = formElement.querySelectorAll('.popup__input');
-    const buttonElement = formElement.querySelector('.popup__button');
-    
+    const inputList = formElement.querySelectorAll(setEnableValidation['inputSelector']);
+    const buttonElement = formElement.querySelector(setEnableValidation['submitButtonSelector']);
+console.log(buttonElement)
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', (evt) => {
-            checkValidity(formElement, inputElement);
-            toggleButtonState(inputList, buttonElement)
+            checkValidity(formElement, inputElement, setEnableValidation);
+            toggleButtonState(inputList, buttonElement, setEnableValidation)
         });
     });
 };
 
 //проверка валидации
 const enableVlaidation = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
+    const formList = Array.from(document.querySelectorAll(setEnableValidation['formSelector']));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
@@ -69,4 +72,4 @@ const enableVlaidation = () => {
         setEventListener(formElement);
     });
 };
-enableVlaidation(enableValidation);
+enableVlaidation(setEnableValidation);
