@@ -9,8 +9,6 @@ const setEnableValidation =  {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input_error'
 };
-console.log(setEnableValidation)
-console.log(setEnableValidation['formSelector'])
 // при вводе текста в input появляется текст ошибки
 const showError = (formElement, inputElement, errorMessage, setEnableValidation) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -18,7 +16,6 @@ const showError = (formElement, inputElement, errorMessage, setEnableValidation)
     errorElement.classList.add(setEnableValidation['errorClass']);
     errorElement.textContent = errorMessage;
 };
-console.log(setEnableValidation['inputErrorClass'])
 // убирает текст ошибки если input валиден
 const hideError = (formElement, inputElement, setEnableValidation) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -36,7 +33,6 @@ const checkValidity = (formElement, inputElement, setEnableValidation) => {
         hideError(formElement, inputElement, setEnableValidation); 
     };
 };
-console.log(setEnableValidation['inactiveButtonClass'])
 // проверка валидации во всех input
 const toggleButtonState = (inputList, buttonElement, setEnableValidation) => {
     const hasInvalidInput = Array.from(inputList).some((inputElement) => {
@@ -53,7 +49,6 @@ const toggleButtonState = (inputList, buttonElement, setEnableValidation) => {
 const setEventListener = (formElement) => {
     const inputList = formElement.querySelectorAll(setEnableValidation['inputSelector']);
     const buttonElement = formElement.querySelector(setEnableValidation['submitButtonSelector']);
-console.log(buttonElement)
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', (evt) => {
             checkValidity(formElement, inputElement, setEnableValidation);
