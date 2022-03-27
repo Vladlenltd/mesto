@@ -32,6 +32,7 @@ function openPopup(popup) {
   //функция закрытия popup
   function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEsc)  
 };
 // закрытие popup нажатием кнопки ESC
 const closePopupByEsc = (evt) => {
@@ -112,7 +113,7 @@ const delBtnElement = imageElement.querySelector('.element__delete-btn');
 delBtnElement.addEventListener('click', delCard);
 //открытие popup картинки
 const fullViewBtn = imageElement.querySelector('.element__item')
-fullViewBtn.addEventListener('click', FullViewPicture);
+fullViewBtn.addEventListener('click', fullViewPicture);
 
   return imageElement;
 };
@@ -143,8 +144,8 @@ function likeCard(evt) {
 function delCard(evt) {
   evt.target.closest('.element').remove();
 };
-//функция FullViewPicture
-function FullViewPicture (evt) {
+//функция fullViewPicture
+function fullViewPicture (evt) {
   const popupImg = evt.target.closest('.element__item');
   popupPicture.src = popupImg.src
   popupCaption.textContent = popupImg.alt
