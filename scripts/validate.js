@@ -10,61 +10,62 @@ const setEnableValidation =  {
     errorClass: 'popup__input_error'
 };
 // при вводе текста в input появляется текст ошибки
-const showError = (formElement, inputElement, errorMessage, setEnableValidation) => {
+const showError = (formElement, inputElement, errorMessage, obj) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add(setEnableValidation['inputErrorClass']);
-    errorElement.classList.add(setEnableValidation['errorClass']);
+    inputElement.classList.add(obj['inputErrorClass']);
+    errorElement.classList.add(obj['errorClass']);
     errorElement.textContent = errorMessage;
 };
 // убирает текст ошибки если input валиден
-const hideError = (formElement, inputElement, setEnableValidation) => {
+const hideError = (formElement, inputElement, obj) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(setEnableValidation['inputErrorClass']);
-    errorElement.classList.remove(setEnableValidation['errorClass'])
+    inputElement.classList.remove(obj['inputErrorClass']);
+    errorElement.classList.remove(obj['errorClass'])
     errorElement.textContent = '';
 };
 // проверка на валидность
-const checkValidity = (formElement, inputElement, setEnableValidation) => {
+const checkValidity = (formElement, inputElement, obj) => {
     const errorMessage= inputElement.validationMessage;
 
     if(!inputElement.validity.valid) {
-        showError(formElement, inputElement, errorMessage, setEnableValidation);
+        showError(formElement, inputElement, errorMessage, obj);
     } else {
-        hideError(formElement, inputElement, setEnableValidation); 
+        hideError(formElement, inputElement, obj); 
     };
 };
 // проверка валидации во всех input
-const toggleButtonState = (inputList, buttonElement, setEnableValidation) => {
+const toggleButtonState = (inputList, buttonElement, obj) => {
     const hasInvalidInput = Array.from(inputList).some((inputElement) => {
         return !inputElement.validity.valid;
     });
-    if (hasInvalidInput, setEnableValidation) {
-        buttonElement.classList.add(setEnableValidation['inactiveButtonClass']);
+    if (hasInvalidInput, obj) {
+        buttonElement.classList.add(obj['inactiveButtonClass']);
         buttonElement.setAttribute('disable', true);
     } else {
-        buttonElement.classList.remove(setEnableValidation['inactiveButtonClass']);
+        buttonElement.classList.remove(obj['inactiveButtonClass']);
         buttonElement.removeAttribute('disable');
     }
 };
-const setEventListener = (formElement) => {
-    const inputList = formElement.querySelectorAll(setEnableValidation['inputSelector']);
-    const buttonElement = formElement.querySelector(setEnableValidation['submitButtonSelector']);
+const setEventListener = (formElement, obj) => {
+    const inputList = Array.from(formElement.querySelectorAll(obj['inputSelector']));
+    const buttonElement = formElement.querySelector(obj['submitButtonSelector']);
+    toggleButtonState(inputList, buttonElement, obj)
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', (evt) => {
-            checkValidity(formElement, inputElement, setEnableValidation);
-            toggleButtonState(inputList, buttonElement, setEnableValidation)
+            checkValidity(formElement, inputElement, obj);
+            toggleButtonState(inputList, buttonElement, obj)
         });
     });
 };
 
 //проверка валидации
-const enableVlaidation = () => {
-    const formList = Array.from(document.querySelectorAll(setEnableValidation['formSelector']));
+const enableVlaidation = (obj) => {
+    const formList = Array.from(document.querySelectorAll(obj['formSelector']));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
-        setEventListener(formElement);
+        setEventListener(formElement, obj);
     });
 };
 enableVlaidation(setEnableValidation);
