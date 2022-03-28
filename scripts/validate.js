@@ -40,18 +40,18 @@ const toggleButtonState = (inputList, buttonElement, obj) => {
     });
     if (hasInvalidInput) {
         buttonElement.classList.add(obj['inactiveButtonClass']);
-        buttonElement.setAttribute('disable', true);
+        buttonElement.setAttribute('disabled', true);
     } else {
         buttonElement.classList.remove(obj['inactiveButtonClass']);
-        buttonElement.removeAttribute('disable');
+        buttonElement.removeAttribute('disabled');
     }
 };
 const setEventListener = (formElement, obj) => {
     const inputList = Array.from(formElement.querySelectorAll(obj['inputSelector']));
     const buttonElement = formElement.querySelector(obj['submitButtonSelector']);
-    // toggleButtonState(inputList, buttonElement, obj)
+    toggleButtonState(inputList, buttonElement, obj)
     inputList.forEach((inputElement) => {
-        inputElement.addEventListener('input', (evt) => {
+        inputElement.addEventListener('input', () => {
             checkValidity(formElement, inputElement, obj);
             toggleButtonState(inputList, buttonElement, obj)
         });

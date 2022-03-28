@@ -42,10 +42,9 @@ const closePopupByEsc = (evt) => {
 };
 //закрытие popup кликом на оверлей
 const closePopupByClickToOverlay = (evt) => {
-  if (evt.target !== evt.currentTarget) {
-    return
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target)
   }
-  closePopup(document.querySelector('.popup_opened'));
 };
 popupElementProfile.addEventListener('click', closePopupByClickToOverlay);
 popupImage.addEventListener('click', closePopupByClickToOverlay);
