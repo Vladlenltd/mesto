@@ -26,7 +26,6 @@ const hideError = (formElement, inputElement, obj) => {
 // проверка на валидность
 const checkValidity = (formElement, inputElement, obj) => {
     const errorMessage= inputElement.validationMessage;
-
     if(!inputElement.validity.valid) {
         showError(formElement, inputElement, errorMessage, obj);
     } else {
@@ -46,6 +45,14 @@ const toggleButtonState = (inputList, buttonElement, obj) => {
         buttonElement.removeAttribute('disabled');
     }
 };
+const formValidation = (formElement, obj) => {
+    const inputList = Array.from(formElement.querySelectorAll(obj['inputSelector']));
+    const buttonElement = formElement.querySelector(obj['submitButtonSelector']);
+    toggleButtonState(inputList, buttonElement, obj);
+    inputList.forEach(inputElement => {
+        hideError(formElement, inputElement, obj)
+    });
+}
 const setEventListener = (formElement, obj) => {
     const inputList = Array.from(formElement.querySelectorAll(obj['inputSelector']));
     const buttonElement = formElement.querySelector(obj['submitButtonSelector']);
@@ -57,7 +64,6 @@ const setEventListener = (formElement, obj) => {
         });
     });
 };
-
 //проверка валидации
 const enableVlaidation = (obj) => {
     const formList = Array.from(document.querySelectorAll(obj['formSelector']));

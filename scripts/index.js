@@ -54,11 +54,12 @@ popupOpenBtnElement.addEventListener('click', () => {
         openPopup(popupElementProfile);
         nameInput.value = profileName.textContent;
         jobInput.value = profileJob.textContent;
-    });
-
-//открытие popup добавления картинки
-popupAddImage.addEventListener('click', () => {
+        formValidation(popupElementProfile, setEnableValidation);
+      });
+      //открытие popup добавления картинки
+      popupAddImage.addEventListener('click', () => {
         openPopup(popupImage);
+        formValidation(popupImage, setEnableValidation);
     });
 //закрытие popup 
 popupCloseBtnElementList.forEach((button) => {
