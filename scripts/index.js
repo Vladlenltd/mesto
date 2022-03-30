@@ -148,6 +148,7 @@ function delCard(evt) {
 function fullViewPicture (evt) {
   const popupImg = evt.target.closest('.element__item');
   popupPicture.src = popupImg.src
+  popupPicture.alt = popupImg.alt
   popupCaption.textContent = popupImg.alt
   openPopup(popupFoto);
 };
