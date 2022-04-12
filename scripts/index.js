@@ -137,21 +137,21 @@ initialCards.forEach((item) => {
 };
 loadCard(initialCards)
 //функция кнопки "мне нравится"
-function likeCard(evt) {
-  evt.target.classList.toggle('element__like-btn_active');
-};
+  // function likeCard(evt) {
+  //   evt.target.classList.toggle('element__like-btn_active');
+  // };
 //функция удаления карточки
-function delCard(evt) {
-  evt.target.closest('.element').remove();
-};
+  // function delCard(evt) {
+  //   evt.target.closest('.element').remove();
+  // };
 //функция fullViewPicture
-function fullViewPicture (evt) {
-  const popupImg = evt.target.closest('.element__item');
-  popupPicture.src = popupImg.src
-  popupPicture.alt = popupImg.alt
-  popupCaption.textContent = popupImg.alt
-  openPopup(popupFoto);
-};
+  // function fullViewPicture (evt) {
+  //   const popupImg = evt.target.closest('.element__item');
+  //   popupPicture.src = popupImg.src
+  //   popupPicture.alt = popupImg.alt
+  //   popupCaption.textContent = popupImg.alt
+  //   openPopup(popupFoto);
+  // };
 function clearForm() {
   linkInput.value = '';
   titleInput.value = '';
