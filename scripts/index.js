@@ -1,4 +1,5 @@
-//Создаю открытие и закрытие popup
+import { Card } from "./card";
+import { initialCards } from "./initialcards";
 // Выбираю DOM элементы
 //Popup профиля
 const popupElementProfile = document.querySelector('.popup_profile');//нашел popup элемент профиля
@@ -25,7 +26,7 @@ const popupPicture = popupFoto.querySelector('.popup__img');//нашел кар�
 const popupCaption = popupFoto.querySelector('.popup__caption');//нашел подпись
 
 //функция открытия popup
-function openPopup(popup) {
+export function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEsc);
   };
@@ -68,55 +69,58 @@ popupCloseBtnElementList.forEach((button) => {
             });
     });
 //массив карточек
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
+// const initialCards = [
+//     {
+//       name: 'Архыз',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+//     },
+//     {
+//       name: 'Челябинская область',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+//     },
+//     {
+//       name: 'Иваново',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+//     },
+//     {
+//       name: 'Камчатка',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+//     },
+//     {
+//       name: 'Холмогорский район',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+//     },
+//     {
+//       name: 'Байкал',
+//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+//     }
+//   ];
 //переменные для работы с массивов
 const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
 const itemElements = document.querySelector('.elements');//переменная для добавления карточки
 //наполняю картинками элемент
-function createImage(name, link) {
-  const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
-  const cardData = imageElement.querySelector('.element__item');
-  const cardTitle = imageElement.querySelector('.element__title');
-  cardData.alt = name;
-  cardTitle.textContent = name;
-  cardData.src = link; 
+  function createImage(name, link, selector) {
+    const card = new Card (name, link, selector);
+    const cardFromTemplate = card.generateCard();
+    return cardFromTemplate;
+  //   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
+  //   const cardData = imageElement.querySelector('.element__item');
+  //   const cardTitle = imageElement.querySelector('.element__title');
+  //   cardData.alt = name;
+  //   cardTitle.textContent = name;
+  //   cardData.src = link; 
 //слушатель кнопки "мне нравиться"
-const likeBtnElement = imageElement.querySelector('.element__like-btn');
-likeBtnElement.addEventListener('click', likeCard);
+  // const likeBtnElement = imageElement.querySelector('.element__like-btn');
+  // likeBtnElement.addEventListener('click', likeCard);
 // удаление картинки
-const delBtnElement = imageElement.querySelector('.element__delete-btn');
-delBtnElement.addEventListener('click', delCard);
+  // const delBtnElement = imageElement.querySelector('.element__delete-btn');
+  // delBtnElement.addEventListener('click', delCard);
 //открытие popup картинки
-const fullViewBtn = imageElement.querySelector('.element__item')
-fullViewBtn.addEventListener('click', fullViewPicture);
+  // const fullViewBtn = imageElement.querySelector('.element__item')
+  // fullViewBtn.addEventListener('click', fullViewPicture);
 
-  return imageElement;
-};
+  //   return imageElement;
+  };
 
 function renderCard(name, link) {
   itemElements.prepend(createImage(name, link));
@@ -132,10 +136,10 @@ formImage.addEventListener('submit', addImage);//прикрепляю обраб
 //перебираю элементы массива
 function loadCard() {
 initialCards.forEach((item) => {
-  renderCard(item.name, item.link)
+  itemElements.append(createImage(item.name, item.link, '#card-template'))
   });
 };
-loadCard(initialCards)
+loadCard()
 //функция кнопки "мне нравится"
   // function likeCard(evt) {
   //   evt.target.classList.toggle('element__like-btn_active');

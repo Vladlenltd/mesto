@@ -1,15 +1,12 @@
 /* мои пометки
-NB - NotaBene
+NB - NotaBene(внимание)
 */
-
-class Card {
-    constructor(title, link, templateSelector, popup) {
+import { openPopup } from ".index.js";
+export class Card {
+    constructor(title, link, templateSelector) {
         this._title = title;
         this._link = link;
         this._templateSelector = templateSelector;
-        this._popup = popup;//NB
-        this._imageElement = popup.querySelector('.popup__img');//NB
-        this._captionElement = popup.querySelector('.popup__caption');//NB
     }
     //получаю готовую разметку
     _getTemplate() {
@@ -36,7 +33,25 @@ class Card {
         this._captionElement.textContent = popupImg.alt; //NB
         openPopup(popup);//NB
     };
-    _setEventListener () {
+    //обработчик событий
+    _setEventListeners () {
+    this._fullViewBtn.addEventListener('click', this._fullViewPicture);    
+    this._likeBtnElement.addEventListener('click', this._likeCard(evt));
+    this._delBtnElement.addEventListener('click', this._delCard);
+    };
+    //метод создания карточки
+    generateCard () {
+        this._element = this._getTemplate();
+        this._imageElement = this._element.querySelector('.popup__img');
+        this._captionElement = this._element.querySelector('.popup__caption');
+        this._likeBtnElement = this._element.querySelector('.element__like-btn');
+        this._delBtnElement = this._element.querySelector('.element__del-btn');
         
+        this._imageElement.src = this._link;
+        this._imageElement.alt = this._title;
+        this._captionElement.textContent = this._title;
+        
+        this._setEventListeners();
+        return this._element
     }
 }
