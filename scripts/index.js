@@ -1,5 +1,5 @@
-import { Card } from "./card";
-import { initialCards } from "./initialcards";
+import { Card } from "../scripts/card.js";
+import { initialCards } from "./initialcards.js";
 // Выбираю DOM элементы
 //Popup профиля
 const popupElementProfile = document.querySelector('.popup_profile');//нашел popup элемент профиля
@@ -68,41 +68,15 @@ popupCloseBtnElementList.forEach((button) => {
                 closePopup(button.closest('.popup'));
             });
     });
-//массив карточек
-// const initialCards = [
-//     {
-//       name: 'Архыз',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-//     },
-//     {
-//       name: 'Челябинская область',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-//     },
-//     {
-//       name: 'Иваново',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-//     },
-//     {
-//       name: 'Камчатка',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-//     },
-//     {
-//       name: 'Холмогорский район',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-//     },
-//     {
-//       name: 'Байкал',
-//       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//     }
-//   ];
 //переменные для работы с массивов
 const itemTemplateContent = document.querySelector('.item-template').content;//получаю содержимое template
 const itemElements = document.querySelector('.elements');//переменная для добавления карточки
 //наполняю картинками элемент
   function createImage(name, link, selector) {
-    const card = new Card (name, link, selector);
-    const cardFromTemplate = card.generateCard();
-    return cardFromTemplate;
+    const cardImage = new Card(name, link, selector);
+    const cardFromTemplate = cardImage.generateCard();
+    return cardFromTemplate
+  };
   //   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
   //   const cardData = imageElement.querySelector('.element__item');
   //   const cardTitle = imageElement.querySelector('.element__title');
@@ -120,26 +94,29 @@ const itemElements = document.querySelector('.elements');//переменная 
   // fullViewBtn.addEventListener('click', fullViewPicture);
 
   //   return imageElement;
-  };
+  // };
 
-function renderCard(name, link) {
-  itemElements.prepend(createImage(name, link));
+function renderCard() {
+  itemElements.prepend(createImage(titleInput.value, linkInput.value, '#card-template'))
 };
+console.log(renderCard);
 //функция добавления новой карточки
 function addImage(evt) {
   evt.preventDefault();
-  renderCard(titleInput.value, linkInput.value)
+  renderCard()
   clearForm();
   closePopup(popupImage);
 };
 formImage.addEventListener('submit', addImage);//прикрепляю обработчик к форме
 //перебираю элементы массива
+console.log(itemElements);
 function loadCard() {
-initialCards.forEach((item) => {
+  initialCards.forEach((item) => {
   itemElements.append(createImage(item.name, item.link, '#card-template'))
-  });
-};
-loadCard()
+})
+  };
+loadCard(initialCards);
+console.log(loadCard);
 //функция кнопки "мне нравится"
   // function likeCard(evt) {
   //   evt.target.classList.toggle('element__like-btn_active');
