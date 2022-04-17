@@ -27,15 +27,15 @@ export class Card {
         evt.target.closest('.element').remove();
     };
     //метод полноэкранного открытия popup
-    // _openPopupCard() {
-    //     openPopup (this.popup);
-    // }
-    // _openPopupCard = () => {
-    //     this._imageElement.src = this._link;
-    //     this._imageElement.alt = this._title; //NB
-    // //     this._captionElement.textContent = popupImg.alt; //NB
-    //     openPopup(popupFoto);//NB
-    // };
+    _openPopupCard() {
+        openPopup (this.popup);
+    }
+    _openPopupCard = () => {
+        this._imageElement.src = this._link;
+        this._imageElement.alt = this._title; //NB
+        this._captionElement.textContent = this._popupImg.alt; //NB
+        openPopup(this.popup);//NB
+    };
     //обработчик событий
     _setEventListeners () {
     this._imageElement.addEventListener('click', this._openPopupCard);    
