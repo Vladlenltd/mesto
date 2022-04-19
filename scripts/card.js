@@ -1,6 +1,3 @@
-/* мои пометки
-NB - NotaBene(внимание)
-*/
 import { fullViewPicture } from "./index.js";
 export class Card {
     constructor(title, link, templateSelector) {
