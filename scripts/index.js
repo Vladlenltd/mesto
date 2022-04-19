@@ -14,12 +14,10 @@ const profileJob = document.querySelector('.profile__subtitle');
 // переменные для работы с формой профиля
 const popupElementProfile = document.querySelector('.popup_profile');//нашел popup элемент профиля
 const formElementProfile = popupElementProfile.querySelector('.popup__form');//находим форму в DOM
-console.log(formElementProfile);
 const jobInput = formElementProfile.querySelector('.popup__input_type_about');//поля формы в DOM
 const nameInput = formElementProfile.querySelector('.popup__input_type_name');//поля формы в DOM
 
 // переменные для работы с модальным окном профиля
-const popupSaveBtnElement = formElementProfile.querySelector('.popup__button');//переменная для кнопки "сохранить"
 const popupOpenBtnElement = document.querySelector('.profile__edit-btn');//кнопка открытия
 
 // переменные для работы с формой добавления картинками
@@ -51,17 +49,6 @@ export function openPopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc)  
   };
-
-//   popups.forEach((popup) => {
-//     popup.addEventListener('mousedown', (evt) => {
-//         if (evt.target.classList.contains('popup_opened')) {
-//             closePopup(popup)
-//         }
-//         if (evt.target.classList.contains('popup__close')) {
-//           closePopup(popup)
-//         }
-//     })
-// })
 
 // закрытие popup нажатием кнопки ESC
 const closePopupByEsc = (evt) => {
@@ -106,24 +93,6 @@ popupCloseBtnElementList.forEach((button) => {
     const cardFromTemplate = cardImage.generateCard();
     return cardFromTemplate
   };
-//   //   const imageElement = itemTemplateContent.querySelector('.element').cloneNode(true);//клонирую элемент
-//   //   const cardData = imageElement.querySelector('.element__item');
-//   //   const cardTitle = imageElement.querySelector('.element__title');
-//   //   cardData.alt = name;
-//   //   cardTitle.textContent = name;
-//   //   cardData.src = link; 
-// //слушатель кнопки "мне нравиться"
-//   // const likeBtnElement = imageElement.querySelector('.element__like-btn');
-//   // likeBtnElement.addEventListener('click', likeCard);
-// // удаление картинки
-//   // const delBtnElement = imageElement.querySelector('.element__delete-btn');
-//   // delBtnElement.addEventListener('click', delCard);
-// //открытие popup картинки
-//   // const fullViewBtn = imageElement.querySelector('.element__item')
-//   // fullViewBtn.addEventListener('click', fullViewPicture);
-
-//   //   return imageElement;
-//   // };
 
 function renderCard() {
   itemElements.prepend(createImage(titleInput.value, linkInput.value, '#card-template'))
@@ -135,23 +104,22 @@ function addImage(evt) {
   clearForm();
   closePopup(popupImage);
 };
-// formImage.addEventListener('submit', addImage);//прикрепляю обработчик к форме
+formImage.addEventListener('submit', addImage);//прикрепляю обработчик к форме
 // //перебираю элементы массива
 function loadCard() {
   initialCards.forEach((item) => {
   itemElements.append(createImage(item.name, item.link, '#card-template'))
-  console.log(itemElements);
 })
   };
-loadCard();
-//функция fullViewPicture
-  // function fullViewPicture (evt) {
-  //   const popupImg = evt.target.closest('.element__item');
-  //   popupPicture.src = popupImg.src
-  //   popupPicture.alt = popupImg.alt
-  //   popupCaption.textContent = popupImg.alt
-  //   openPopup(popupFoto);
-  // };
+  loadCard();
+  // функция fullViewPicture
+  export function fullViewPicture (evt) {
+    const popupImg = evt.target.closest('.element__item');
+    popupPicture.src = popupImg.src
+    popupPicture.alt = popupImg.alt
+    popupCaption.textContent = popupImg.alt
+    openPopup(popupFoto);
+  };
 function clearForm() {
   linkInput.value = '';
   titleInput.value = '';
@@ -161,6 +129,7 @@ const validationProfileForm = new FormValidator (setEnableValidation, formElemen
 validationProfileForm.enableValidation();
 const validationAddImageForm = new FormValidator (setEnableValidation, formImage);
 validationAddImageForm.enableValidation();
+console.log(validationProfileForm);
 // // Обработчик «отправки» формы, хотя пока
 // // она никуда отправляться не будет
 function saveProfile (evt) {

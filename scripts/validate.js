@@ -52,6 +52,14 @@ export const setEnableValidation =  {
 //         hideError(formElement, inputElement, obj)
 //     });
 // }
+// _formValidation() {
+//     this._inputList = Array.from(this._classForm.querySelectorAll(this._inputSelector));
+//     this._buttonElement = this._classForm.querySelector(this._submitButtonSelector);
+//     this._toggleButtonState();
+//     this._inputList.forEach((inputElement) => {
+//         this._hideError(inputElement)
+//     });
+// }; 
 // const setEventListener = (formElement, obj) => {
 //     const inputList = Array.from(formElement.querySelectorAll(obj['inputSelector']));
 //     const buttonElement = formElement.querySelector(obj['submitButtonSelector']);

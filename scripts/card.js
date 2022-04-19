@@ -1,17 +1,17 @@
 /* мои пометки
 NB - NotaBene(внимание)
 */
-import { openPopup } from "./index.js";
+import { fullViewPicture } from "./index.js";
 export class Card {
     constructor(title, link, templateSelector) {
-        this._title = title;
-        this._link = link;
-        this._templateSelector = templateSelector;
+        this.title = title;
+        this.link = link;
+        this.templateSelector = templateSelector;
     }
     //получаю готовую разметку
     _getTemplate() {
         const cardElement = document
-        .querySelector(this._templateSelector)
+        .querySelector(this.templateSelector)
         .content
         .querySelector('.element')
         .cloneNode(true);
@@ -26,19 +26,9 @@ export class Card {
     _delCard(evt) {
         evt.target.closest('.element').remove();
     };
-    //метод полноэкранного открытия popup
-    _openPopupCard() {
-        openPopup (this.popup);
-    }
-    _openPopupCard = () => {
-        this._imageElement.src = this._link;
-        this._imageElement.alt = this._title; //NB
-        this._captionElement.textContent = this._popupImg.alt; //NB
-        openPopup(this.popup);//NB
-    };
     //обработчик событий
     _setEventListeners () {
-    this._imageElement.addEventListener('click', this._openPopupCard);    
+    this._imageElement.addEventListener('click', fullViewPicture);    
     this._likeBtnElement.addEventListener('click', this._likeCard);
     this._delBtnElement.addEventListener('click', this._delCard);
     };
