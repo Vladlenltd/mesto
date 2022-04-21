@@ -85,7 +85,8 @@ loadCard();
 
 //сброс формы
 function clearForm() {
-  formImage.reset()
+  formImage.reset();
+  validationAddImageForm.toggleButtonState();
 };
 
 //сохранение профиля
