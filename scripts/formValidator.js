@@ -1,9 +1,3 @@
-// formSelector: '.popup__form',
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button_disable',
-//     inputErrorClass: 'popup__input_type_error',
-//     errorClass: 'popup__input_error'
 export class FormValidator {
     constructor(obj, classForm) {
         this._classForm = classForm;
