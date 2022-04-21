@@ -1,9 +1,7 @@
 import { Card } from "./Card.js";
-import { initialCards } from "./initialcards.js";
 import { FormValidator } from "./FormValidator.js";
 
 //функции
-
 //открытие popup
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
