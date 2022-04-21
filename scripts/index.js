@@ -5,7 +5,6 @@ import { setEnableValidation } from "./validate.js"
 
 // переменные для работы с закрытием модальных окон
 const popupCloseBtnElementList = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
-const popups = document.querySelectorAll('.popup')
 
 // переменные для работы с профилем
 const profileName = document.querySelector('.profile__title');
@@ -98,13 +97,13 @@ function renderCard() {
   itemElements.prepend(createImage(titleInput.value, linkInput.value, '#card-template'))
 };
 // //функция добавления новой карточки
-function addImage(evt) {
+function addCard(evt) {
   evt.preventDefault();
   renderCard()
   clearForm();
   closePopup(popupImage);
 };
-formImage.addEventListener('submit', addImage);//прикрепляю обработчик к форме
+formImage.addEventListener('submit', addCard);//прикрепляю обработчик к форме
 // //перебираю элементы массива
 function loadCard() {
   initialCards.forEach((item) => {
@@ -129,7 +128,7 @@ const validationProfileForm = new FormValidator (setEnableValidation, formElemen
 validationProfileForm.enableValidation();
 const validationAddImageForm = new FormValidator (setEnableValidation, formImage);
 validationAddImageForm.enableValidation();
-console.log(validationProfileForm);
+
 // // Обработчик «отправки» формы, хотя пока
 // // она никуда отправляться не будет
 function saveProfile (evt) {
