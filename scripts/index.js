@@ -120,8 +120,7 @@ function loadCard() {
     openPopup(popupFoto);
   };
 function clearForm() {
-  linkInput.value = '';
-  titleInput.value = '';
+  formImage.reset()
 };
 // валидация форм из конструктора
 const validationProfileForm = new FormValidator (setEnableValidation, formElementProfile);
