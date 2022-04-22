@@ -30,12 +30,12 @@ export class FormValidator {
             this._hideError(inputElement); 
         };
     };
-//валидность всех input
+
     _hasInvalidInput() { 
         return this._inputList.some(inputElement => {
-        return !inputElement.validity.valid;
-    });
-}
+            return !inputElement.validity.valid;
+        });
+    }
 
     toggleButtonState() {
         if (this._hasInvalidInput()) {
