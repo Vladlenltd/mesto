@@ -49,6 +49,5 @@ export class Card {
         
         this._setEventListeners();
         return this._element
-        
     }
 }
