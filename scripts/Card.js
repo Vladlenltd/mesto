@@ -1,10 +1,9 @@
-import { fullViewPicture } from "./index.js";
-
 export class Card {
-    constructor(title, link, templateSelector) {
+    constructor(title, link, templateSelector, handleCardClick) {
         this.title = title;
         this.link = link;
         this.templateSelector = templateSelector;
+        this.handleCardClick = handleCardClick;
     }
 
     //получаю готовую разметку
@@ -28,9 +27,10 @@ export class Card {
         evt.target.closest('.element').remove();
     };
 
+
     //обработчик событий
     _setEventListeners () {
-    this._imageElement.addEventListener('click', fullViewPicture);    
+    this._imageElement.addEventListener('click', this.handleCardClick);    
     this._likeBtnElement.addEventListener('click', this._likeCard);
     this._delBtnElement.addEventListener('click', this._delCard);
     };
