@@ -1,4 +1,4 @@
-export default class Popup {
+export class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
         this._handleEscClose = this._handleEscClose.bind(this);
@@ -25,7 +25,7 @@ export default class Popup {
         this._popupSelector.addEventListener('mousedown', (evt) => {
             if (evt.target === evt.currentTarget) {
                 this.close()
-            }   
-        })
+            }
+        });
     }
 }

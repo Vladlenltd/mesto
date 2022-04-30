@@ -1,4 +1,4 @@
-export default class Section {
+export class Section {
     constructor ({ items, renderer }, containerSelector) {
         this._renderedItems = items; //массив данных
         this._renderer = renderer;  //отрисовка данных
