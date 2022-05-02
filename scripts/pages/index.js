@@ -8,7 +8,8 @@ import { initialCards, setEnableValidation } from "../utils/constants.js"
 
 // переменные для работы с закрытием модальных окон
 const popupCloseBtnElementList = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
-
+const popups = document.querySelectorAll('.popup');
+console.log(popups);
 // переменные для работы с профилем
 const profileName = document.querySelector('.profile__title');
 const profileJob = document.querySelector('.profile__subtitle');
