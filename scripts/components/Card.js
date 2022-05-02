@@ -1,7 +1,6 @@
 export class Card {
-    constructor(title, link, templateSelector, handleCardClick) {
-        this.title = title;
-        this.link = link;
+    constructor({ data, handleCardClick}, templateSelector) {
+        this.data = data;
         this.templateSelector = templateSelector;
         this.handleCardClick = handleCardClick;
     }
@@ -43,9 +42,9 @@ export class Card {
         this._likeBtnElement = this._element.querySelector('.element__like-btn');
         this._delBtnElement = this._element.querySelector('.element__delete-btn');
 
-        this._imageElement.src = this.link;
-        this._imageElement.alt = this.title;
-        this._captionElement.textContent = this.title;
+        this._imageElement.src = this.data.link;
+        this._imageElement.alt = this.data.title;
+        this._captionElement.textContent = this.data.title;
         
         this._setEventListeners();
         return this._element

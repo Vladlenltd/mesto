@@ -2,7 +2,7 @@ export class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
         this._handleEscClose = this._handleEscClose.bind(this);
-        this._closeBtn = this._popup.querySelector('.popup__close-btn')
+        this._closeBtn = document.querySelector('.popup__close-btn')
     }
     
     open() {// публичный метод открытия popup

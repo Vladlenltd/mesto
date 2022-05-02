@@ -1,9 +1,10 @@
-import { Card } from "./Card.js";
+import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { initialCards, setEnableValidation } from "../utils/constants.js"
 
 // переменные для работы с закрытием модальных окон
 const popupCloseBtnElementList = document.querySelectorAll('.popup__close-btn');//нашел все кнопки закрытия popup
@@ -19,7 +20,7 @@ const workInput = formElementProfile.querySelector('.popup__input_type_about');/
 const nameInput = formElementProfile.querySelector('.popup__input_type_name');//поля формы в DOM
 
 // переменные для работы с модальным окном профиля
-const btnOpenProfile = document.querySelector('.profile__edit-btn');//rn//кнопка открытия
+const openProfileBtn = document.querySelector('.profile__edit-btn');//rn//кнопка открытия
 
 // переменные для работы с формой добавления картинками
 const popupImage = document.querySelector('.popup_picture');//нашел popup добавления изображения
@@ -29,17 +30,20 @@ const linkInput = formImage.querySelector('.popup__input_type_link');//поле 
 
 // переменные для работы с модальным окном добавления картинки
 const popupAddImage = document.querySelector('.profile__add-btn');//кнопка открытия попап добавления изображения
-const popupSaveImage = document.querySelector('.popup__image-add');//кнопка сохранение элемента submit
+const submitPopupBtn = document.querySelector('.popup__image-add');//кнопка сохранение элемента submit
 
 // переменные для работы с модальным окном картинки
 const popupFoto = document.querySelector('.popup_card');//нашел popup фото
 const popupPicture = popupFoto.querySelector('.popup__img');//нашел картинку
 const popupCaption = popupFoto.querySelector('.popup__caption');//нашел подпись
-
 //переменная для создания карточки
 const itemElements = document.querySelector('.elements');//переменная для добавления карточки
 
-
+const validationProfileForm = new FormValidator (setEnableValidation, formElementProfile);
+validationProfileForm.enableValidation();
+const validationAddImageForm = new FormValidator (setEnableValidation, formImage);
+validationAddImageForm.enableValidation();
+const cardsListSelector = '.elements';
 const popupEdit = new PopupWithForm(popupProfile, {
   handleSubmit: (formData) => {
     userInfo.setUserInfo(formData);
@@ -47,13 +51,48 @@ const popupEdit = new PopupWithForm(popupProfile, {
   }
 });
 
-btnOpenProfile.addEventListener('click', () => {
+openProfileBtn.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
   nameInput.value = userData.userName;
   workInput.value = userData.userWork;
   validationProfileForm.toggleButtonState();
   popupEdit.open();
 });
+
+const popupAddPicture = new PopupWithForm(popupImage, {
+  handleSubmit: (formData) => {
+    cards.addItem(formData);
+  }
+})
+
+submitPopupBtn.addEventListener('click', () => {
+  validationProfileForm.toggleButtonState();
+  popupAddPicture.open();
+})
+const userInfo = new UserInfo({
+  titleSelector: '.profile__title',
+  workSelector: '.profile__subtitle'
+})
+
+const popupWithImage = new PopupWithImage(popupFoto);
+
+const createCard = (data) => {
+  const card = new Card({data, handleCardClick: () => {
+    popupWithImage.open(data.title, data.link);
+  }
+}, '#card-template'
+);
+return card
+}
+
+const cards = new Section({
+  items: initialCards, renderer: (initialCards) => {
+    const card = createCard(initialCards);
+    const cardFromTemplate = card.generateCard();
+    return cardFromTemplate;
+  }
+}, cardsListSelector)
+cards.renderItems();
 // //функции
 // //открытие popup
 // export function openPopup(popup) {
@@ -89,7 +128,7 @@ btnOpenProfile.addEventListener('click', () => {
 // });
 
 // //открытие popup профиля
-// btnOpenProfile.addEventListener('click', () => {
+// openProfileBtn.addEventListener('click', () => {
 //   openPopup(popupProfile);
 //   nameInput.value = profileName.textContent;
 //   workInput.value = profileJob.textContent;
@@ -164,7 +203,3 @@ btnOpenProfile.addEventListener('click', () => {
 // popupFoto.addEventListener('click', closePopupByClickToOverlay);
 
 // валидация форм из конструктора
-const validationProfileForm = new FormValidator (setEnableValidation, formElementProfile);
-validationProfileForm.enableValidation();
-const validationAddImageForm = new FormValidator (setEnableValidation, formImage);
-validationAddImageForm.enableValidation();
