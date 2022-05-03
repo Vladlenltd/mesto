@@ -45,12 +45,20 @@ validationProfileForm.enableValidation();
 const validationAddImageForm = new FormValidator (setEnableValidation, formImage);
 validationAddImageForm.enableValidation();
 const cardsListSelector = '.elements';
+
 const popupEdit = new PopupWithForm(popupProfile, {
   handleSubmit: (formData) => {
     userInfo.setUserInfo(formData);
     popupEdit.close();
   }
 });
+
+const popupAddFoto = new PopupWithForm(popupImage, {
+  handleSubmit: (formData) => {
+    cards.addItem(formData);
+    popupAddFoto.close();
+  }
+})
 
 openProfileBtn.addEventListener('click', () => {
   const userData = userInfo.getUserInfo();
@@ -60,11 +68,7 @@ openProfileBtn.addEventListener('click', () => {
   popupEdit.open();
 });
 
-const popupAddPicture = new PopupWithForm(popupImage, {
-  handleSubmit: (formData) => {
-    cards.addItem(formData);
-  }
-})
+
 
 submitPopupBtn.addEventListener('click', () => {
   validationProfileForm.toggleButtonState();
@@ -76,7 +80,6 @@ const userInfo = new UserInfo({
 })
 
 const popupWithImage = new PopupWithImage(popupFoto);
-
 const createCard = (data) => {
   const card = new Card({data, handleCardClick: () => {
     popupWithImage.open(data.title, data.link);

@@ -5,7 +5,6 @@ export class Popup {
         this._handleOverlayClose = this._handleOverlayClose.bind(this)
         this._closeBtn = this._popupSelector.querySelector('.popup__close-btn')
     }
-    
     open() {// публичный метод открытия popup
         this._popupSelector.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
