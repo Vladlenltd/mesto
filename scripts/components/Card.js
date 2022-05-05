@@ -1,14 +1,14 @@
 export class Card {
-    constructor({ data, handleCardClick}, templateSelector) {
+    constructor({ data, handleCardClick}, selector) {
         this.data = data;
-        this.templateSelector = templateSelector;
+        this.selector = selector;
         this.handleCardClick = handleCardClick;
     }
 
     //получаю готовую разметку
     _getTemplate() {
         const cardElement = document
-        .querySelector(this.templateSelector)
+        .querySelector(this.selector)
         .content
         .querySelector('.element')
         .cloneNode(true);
@@ -43,8 +43,8 @@ export class Card {
         this._delBtnElement = this._element.querySelector('.element__delete-btn');
 
         this._imageElement.src = this.data.link;
-        this._imageElement.alt = this.data.title;
-        this._captionElement.textContent = this.data.title;
+        this._imageElement.alt = this.data.name;
+        this._captionElement.textContent = this.data.name;
         
         this._setEventListeners();
         return this._element

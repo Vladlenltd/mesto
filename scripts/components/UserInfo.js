@@ -14,7 +14,7 @@ export class UserInfo {
         return userInfo
     }
 
-    setUserInfo(name, work) {
+    setUserInfo({ name, work }) {
         this._userName.textContent = name;
         this._userWork.textContent = work;
     }
