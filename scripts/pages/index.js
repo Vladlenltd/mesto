@@ -6,13 +6,13 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { initialCards, setEnableValidation } from "../utils/constants.js"
 
-const popupImage = document.querySelector('.popup_picture');//нашел popup добавления изображения
-const popupFoto = document.querySelector('.popup_card');//нашел popup фото
-const popupProfile = document.querySelector('.popup_profile');//rn//нашел popup элемент профиля
-const addImageBtn = document.querySelector('.profile__add-btn');//кнопка открытия попап добавления изображения
-const openProfileBtn = document.querySelector('.profile__edit-btn');//rn//кнопка открытия
-const formImage = document.querySelector('.form__picture');//нашел форму изображения в DOM
-const formElementProfile = document.querySelector('.form__profile');//находим форму в DOM
+const popupImage = document.querySelector('.popup_picture');
+const popupFoto = document.querySelector('.popup_card');
+const popupProfile = document.querySelector('.popup_profile');
+const addImageBtn = document.querySelector('.profile__add-btn');
+const openProfileBtn = document.querySelector('.profile__edit-btn');
+const formImage = document.querySelector('.form__picture');
+const formElementProfile = document.querySelector('.form__profile');
 const titleInput = formElementProfile.querySelector('#name-input');
 const workInput = formElementProfile.querySelector('#about-input');
 const cardsListSelector = '.elements';
@@ -62,3 +62,6 @@ const cards = new Section({
 }, cardsListSelector);
 
 cards.renderItems();
+
+validationProfileForm.enableValidation();
+validationAddImageForm.enableValidation();

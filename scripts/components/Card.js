@@ -41,7 +41,6 @@ export class Card {
         this._captionElement = this._element.querySelector('.element__title');
         this._likeBtnElement = this._element.querySelector('.element__like-btn');
         this._delBtnElement = this._element.querySelector('.element__delete-btn');
-
         this._imageElement.src = this.data.link;
         this._imageElement.alt = this.data.name;
         this._captionElement.textContent = this.data.name;

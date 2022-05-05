@@ -5,9 +5,10 @@ export class Section {
         this._container = document.querySelector(selector);
     }
 
-    setItem(element) { // метод принятия и передачи DOM-Element
+    setItem(element) { 
+        console.log(element);
         const renderedItem = this._renderer(element);
-        this._container.append(renderedItem);
+        this._container.prepend(renderedItem);
     }
     
     renderItems() {

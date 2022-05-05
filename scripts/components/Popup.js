@@ -6,19 +6,19 @@ export class Popup {
         this._closeBtn = this._selector.querySelector('.popup__close-btn')
     }
     
-    open() {// публичный метод открытия popup
+    open() {
         this._selector.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
         document.addEventListener('mousedown', this._handleOverlayClose);
     }
 
-    close() {// публичный метод закрытия popup
+    close() {
         this._selector.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
         document.removeEventListener('mousedown', this._handleOverlayClose);
     }
 
-    _handleEscClose(evt) {// приватный метод закрытия popup клавишей ESC
+    _handleEscClose(evt) {
         if (evt.key === 'Escape') {
             this.close()
         };
