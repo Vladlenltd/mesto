@@ -53,7 +53,7 @@ const cards = new Section({
     const card = new Card({
       data: item, handleCardClick: () => {
         const popupCard = new PopupWithImage(popupFoto);
-        popupCard.open(item.name, item.link);
+        popupCard.open(item.title, item.url);
       }
     }, '#card-template');
     const cardFromTemplate = card.generateCard();
