@@ -5,6 +5,7 @@ import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
 import { initialCards, setEnableValidation } from "../scripts/utils/constants.js"
+import '../styles/index.css'
 
 const popupImage = document.querySelector('.popup_picture');
 const popupFoto = document.querySelector('.popup_card');
