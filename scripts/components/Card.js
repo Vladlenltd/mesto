@@ -1,16 +1,14 @@
-import { fullViewPicture } from "./index.js";
-
 export class Card {
-    constructor(title, link, templateSelector) {
-        this.title = title;
-        this.link = link;
-        this.templateSelector = templateSelector;
+    constructor({ data, handleCardClick}, selector) {
+        this.data = data;
+        this.selector = selector;
+        this.handleCardClick = handleCardClick;
     }
 
     //получаю готовую разметку
     _getTemplate() {
         const cardElement = document
-        .querySelector(this.templateSelector)
+        .querySelector(this.selector)
         .content
         .querySelector('.element')
         .cloneNode(true);
@@ -28,9 +26,10 @@ export class Card {
         evt.target.closest('.element').remove();
     };
 
+
     //обработчик событий
     _setEventListeners () {
-    this._imageElement.addEventListener('click', fullViewPicture);    
+    this._imageElement.addEventListener('click', this.handleCardClick);    
     this._likeBtnElement.addEventListener('click', this._likeCard);
     this._delBtnElement.addEventListener('click', this._delCard);
     };
@@ -42,10 +41,9 @@ export class Card {
         this._captionElement = this._element.querySelector('.element__title');
         this._likeBtnElement = this._element.querySelector('.element__like-btn');
         this._delBtnElement = this._element.querySelector('.element__delete-btn');
-
-        this._imageElement.src = this.link;
-        this._imageElement.alt = this.title;
-        this._captionElement.textContent = this.title;
+        this._imageElement.src = this.data.url;
+        this._imageElement.alt = this.data.title;
+        this._captionElement.textContent = this.data.title;
         
         this._setEventListeners();
         return this._element
