@@ -8,22 +8,21 @@ export class Popup {
     
     open() {
         this._popupSelector.classList.add('popup_opened');
-        document.addEventListener('keydown', this._handleEscClose);
-        document.addEventListener('mousedown', this._handleOverlayClose);
-    }
+        this.setEventListeners();
 
+    }
+    
     close() {
         this._popupSelector.classList.remove('popup_opened');
-        document.removeEventListener('keydown', this._handleEscClose);
-        document.removeEventListener('mousedown', this._handleOverlayClose);
+        this.removeEventListeners();
     }
-
+    
     _handleEscClose(evt) {
         if (evt.key === 'Escape') {
             this.close()
         };
     }
-
+    
     _handleOverlayClose(evt) {
         if (evt.target.classList.contains('popup_opened')) {
             this.close();
@@ -31,5 +30,15 @@ export class Popup {
         else if (evt.target === this._closeBtn) {
             this.close();
         }
+    }
+    setEventListeners() {
+        document.addEventListener('mousedown', this._handleOverlayClose);
+        document.addEventListener('keydown', this._handleEscClose);
+    }
+    
+    removeEventListeners() {
+        document.removeEventListener('keydown', this._handleEscClose);
+        document.removeEventListener('mousedown', this._handleOverlayClose);
+        
     }
 }

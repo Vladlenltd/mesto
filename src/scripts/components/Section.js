@@ -5,8 +5,7 @@ export class Section {
         this._container = document.querySelector(selector);
     }
 
-    setItem(element) { 
-        console.log(element);
+    setItem(element) {
         const renderedItem = this._renderer(element);
         this._container.prepend(renderedItem);
     }
