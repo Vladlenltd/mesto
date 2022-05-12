@@ -4,6 +4,8 @@ export class UserInfo {
         this._workSelector = workSelector;
         this._userName = document.querySelector(this._titleSelector);
         this._userWork = document.querySelector(this._workSelector);
+        console.log(this._userName);
+        console.log(this._userWork);
     }
 
     getUserInfo() {
@@ -14,8 +16,8 @@ export class UserInfo {
         return userInfo
     }
 
-    setUserInfo({ name, work }) {
+    setUserInfo({ name, about }) {
         this._userName.textContent = name;
-        this._userWork.textContent = work;
+        this._userWork.textContent = about;
     }
 }

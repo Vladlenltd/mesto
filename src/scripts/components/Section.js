@@ -4,14 +4,14 @@ export class Section {
         this._renderer = renderer;
         this._container = document.querySelector(selector);
     }
-
     addItem(element) { 
-        this._container.prepend(element);
+        const renderedItem = this._renderer(element);
+        this._container.prepend(renderedItem);
     }
     
     renderItems() {
         this._items.forEach((item) => {
-          this._renderer(item);
+          this.addItem(item);
         });
     }
 }

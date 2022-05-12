@@ -1,11 +1,11 @@
-import { Card } from "./scripts/components/Card.js";
-import { FormValidator } from "./scripts/components/FormValidator.js";
-import { Section } from "./scripts/components/Section.js";
-import { PopupWithImage } from "./scripts/components/PopupWithImage.js";
-import { PopupWithForm } from "./scripts/components/PopupWithForm.js";
-import { UserInfo } from "./scripts/components/UserInfo.js";
-import { initialCards, setEnableValidation } from "./scripts/utils/constants.js"
-import './pages/index.css'
+import { Card } from "../scripts/components/Card.js";
+import { FormValidator } from "../scripts/components/FormValidator.js";
+import { Section } from "../scripts/components/Section.js";
+import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
+import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
+import { UserInfo } from "../scripts/components/UserInfo.js";
+import { initialCards, setEnableValidation } from "../scripts/utils/constants.js"
+import './index.css'
 
 const popupImage = document.querySelector('.popup_picture');
 const popupFoto = document.querySelector('.popup_card');
@@ -27,7 +27,8 @@ const userInfo = new UserInfo({
 
 const popupAddPicture = new PopupWithForm(popupImage, {
   handleSubmit: (formData) => {
-    cards.setItem(formData);
+    cards.addItem(formData);
+    popupAddPicture.close();
   }
 });
 
@@ -36,8 +37,8 @@ addImageBtn.addEventListener('click', () => {
 });
 
 const newPopupProfile = new PopupWithForm(popupProfile, {
-  handleSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
+  handleSubmit: (data) => {
+    userInfo.setUserInfo(data);
     newPopupProfile.close();
   }
 });
@@ -49,20 +50,25 @@ openProfileBtn.addEventListener('click', () => {
     newPopupProfile.open();
   });
 
-const cards = new Section({
-  items: initialCards, renderer: (item) => {
-    const card = new Card({
-      data: item, handleCardClick: () => {
-        const popupCard = new PopupWithImage(popupFoto);
-        popupCard.open(item.title, item.url);
-      }
-    }, '#card-template');
-    const cardFromTemplate = card.generateCard();
-    return cardFromTemplate;
-  }
-}, cardsListSelector);
+    const popupCard = new PopupWithImage(popupFoto);
 
-cards.renderItems();
+    const createCard = (item) => {
+      const card = new Card({
+        data: item, handleCardClick: () => {
+          popupCard.open(item.title, item.url);
+        }
+      }, '#card-template'
+      );
+      return card
+    }
+    const cards = new Section({
+      items: initialCards, renderer: (initialCards) => {
+        const card = createCard(initialCards);
+        const newCardFromTemplate = card.generateCard();
+        return newCardFromTemplate;
+      }
+    }, cardsListSelector)
+    cards.renderItems();
 
 validationProfileForm.enableValidation();
 validationAddImageForm.enableValidation();
