@@ -35,6 +35,7 @@ const popupAddPicture = new PopupWithForm(popupImage, {
 addImageBtn.addEventListener('click', () => {
   popupAddPicture.open();
 });
+popupAddPicture.setEventListeners();
 
 const newPopupProfile = new PopupWithForm(popupProfile, {
   handleSubmit: (data) => {
@@ -50,8 +51,11 @@ openProfileBtn.addEventListener('click', () => {
     newPopupProfile.open();
   });
 
-    const popupCard = new PopupWithImage(popupFoto);
+  newPopupProfile.setEventListeners();
 
+    const popupCard = new PopupWithImage(popupFoto);
+  
+    
     const createCard = (item) => {
       const card = new Card({
         data: item, handleCardClick: () => {
@@ -69,6 +73,7 @@ openProfileBtn.addEventListener('click', () => {
       }
     }, cardsListSelector)
     cards.renderItems();
-
+    
+    popupCard.setEventListeners();
 validationProfileForm.enableValidation();
 validationAddImageForm.enableValidation();
