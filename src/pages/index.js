@@ -61,15 +61,15 @@ openProfileBtn.addEventListener('click', () => {
         data: item, handleCardClick: () => {
           popupCard.open(item.title, item.url);
         }
-      }, '#card-template'
-      );
-      return card
+      }, '#template');
+      console.log(card);
+      const newCardFromTemplate = card.generateCard();
+      return newCardFromTemplate;
     }
     const cards = new Section({
-      items: initialCards, renderer: (initialCards) => {
-        const card = createCard(initialCards);
-        const newCardFromTemplate = card.generateCard();
-        return newCardFromTemplate;
+      items: initialCards, renderer: (item) => {
+        const newCard = createCard(item);
+        cards.addItem(newCard)
       }
     }, cardsListSelector)
     cards.renderItems();
