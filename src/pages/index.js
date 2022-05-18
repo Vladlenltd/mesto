@@ -26,8 +26,8 @@ const userInfo = new UserInfo({
 })
 
 const popupAddPicture = new PopupWithForm(popupImage, {
-  handleSubmit: (formData) => {
-    cards.addItem(formData);
+  handleSubmit: (item) => {
+    cards.addItem(createCard(item));
     popupAddPicture.close();
   }
 });
@@ -55,15 +55,15 @@ openProfileBtn.addEventListener('click', () => {
 
     const popupCard = new PopupWithImage(popupFoto);
   
-    
     const createCard = (item) => {
-      const card = new Card({
-        data: item, handleCardClick: () => {
+      const card = new Card ( {
+        data: item,
+        handleCardClick: () => {
           popupCard.open(item.title, item.url);
         }
       }, '#template');
-      const newCardFromTemplate = card.generateCard();
-      return newCardFromTemplate;
+      const cardElement = card.generateCard();
+      return cardElement
     }
     const cards = new Section({
       items: initialCards, renderer: (item) => {
