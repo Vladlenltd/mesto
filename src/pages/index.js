@@ -62,14 +62,12 @@ openProfileBtn.addEventListener('click', () => {
           popupCard.open(item.title, item.url);
         }
       }, '#template');
-      console.log(card);
       const newCardFromTemplate = card.generateCard();
       return newCardFromTemplate;
     }
     const cards = new Section({
       items: initialCards, renderer: (item) => {
-        const newCard = createCard(item);
-        cards.addItem(newCard)
+        cards.addItem(createCard(item));
       }
     }, cardsListSelector)
     cards.renderItems();
