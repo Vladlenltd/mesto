@@ -33,6 +33,7 @@ const popupAddPicture = new PopupWithForm(popupImage, {
 });
 
 addImageBtn.addEventListener('click', () => {
+  validationAddImageForm.toggleButtonState()
   popupAddPicture.open();
 });
 popupAddPicture.setEventListeners();
