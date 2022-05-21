@@ -8,6 +8,7 @@
     height: 50px;
     transition: opacity 0.4s linear;
     padding: 0;
+    width: 358px
 }
 .popup__button:hover {
     cursor: pointer;
