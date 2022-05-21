@@ -40,6 +40,28 @@
                 </form>    
             </div>
         </section>
+        <!-- Popup измениния фото профиля -->
+        <section class="popup popup_profile-foto">
+            <div class="popup__container">
+                <button class="popup__close-btn"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="popup__content popup__form popup__form-profile-foto" name="profile-foto" novalidate>
+                    <input class="popup__input popup__input_type_avatar" type="url" placeholder="Ссылка на картинку" minlength="2" required>
+                    <span class=" title-input-error" id=""></span>
+                    <button class="popup__button" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </section>
+        <!-- Popup c подтверждением -->
+        <section class="popup popup_confirm">
+            <div class="popup__container">
+                <button class="popup__close-btn"></button>
+                <form class="popup__content popup__form popup__form-confirm" name="confirm" novalidate>
+                    <h2 class="popup__title">Вы уверены?</h2>
+                    <button class="popup__button" type="submit">Да</button>
+                </form>
+            </div>
+        </section>
         <!-- Popup добавления картинки -->
         <section class="popup popup_picture">
             <div class="popup__container">
