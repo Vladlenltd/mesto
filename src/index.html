@@ -13,6 +13,7 @@
         </header>
         <main class="main">
             <section class="profile">
+                <span class="profile__edit-avatar"></span>
                 <img src="<%=require('./image/profile.jpg')%>" alt="Аватар пользователя" class="profile__foto">
                 <article class="profile__info">
                     <div class="profile__wrapper">
@@ -96,7 +97,10 @@
             <img src="#" alt="" class="element__item">
             <div class="element__wrapper">
                 <h2 class="element__title"></h2>
-                <button class="element__like-btn" type="button"></button>
+                <div class="element__like">
+                    <button class="element__like-btn" type="button"></button>
+                    <span class="element__like-count"></span>
+                </div>
             </div>
         </article>
     </template>
