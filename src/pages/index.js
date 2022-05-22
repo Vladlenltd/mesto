@@ -7,9 +7,6 @@ import { UserInfo } from "../scripts/components/UserInfo.js";
 import { initialCards, setEnableValidation } from "../scripts/utils/constants.js"
 import './index.css'
 
-const popupImage = document.querySelector('.popup_picture');
-const popupFoto = document.querySelector('.popup_card');
-const popupProfile = document.querySelector('.popup_profile');
 const addImageBtn = document.querySelector('.profile__add-btn');
 const openProfileBtn = document.querySelector('.profile__edit-btn');
 const formImage = document.querySelector('.popup__form-picture');
@@ -25,7 +22,7 @@ const userInfo = new UserInfo({
   workSelector: '.profile__subtitle'
 })
 
-const popupAddPicture = new PopupWithForm(popupImage, {
+const popupAddPicture = new PopupWithForm('.popup_picture', {
   handleSubmit: (item) => {
     cards.addItem(createCard(item));
     popupAddPicture.close();
@@ -38,7 +35,7 @@ addImageBtn.addEventListener('click', () => {
 });
 popupAddPicture.setEventListeners();
 
-const newPopupProfile = new PopupWithForm(popupProfile, {
+const newPopupProfile = new PopupWithForm('.popup_profile', {
   handleSubmit: (data) => {
     userInfo.setUserInfo(data);
     newPopupProfile.close();
@@ -54,7 +51,7 @@ openProfileBtn.addEventListener('click', () => {
 
   newPopupProfile.setEventListeners();
 
-    const popupCard = new PopupWithImage(popupFoto);
+    const popupCard = new PopupWithImage('.popup_card');
   
     const createCard = (item) => {
       const card = new Card ( {
