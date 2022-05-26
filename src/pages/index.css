@@ -27,6 +27,7 @@
 @import url(../blocks/element/__wrapper/element__wrapper.css);
 @import url(../blocks/element/__item/element__item.css);
 @import url(../blocks/element/__delete-btn/element__delete-btn.css);
+@import url(../blocks/element/__delete-btn/_disable/element__delete-btn_disable.css);
 /* Footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

@@ -1,5 +1,3 @@
-import { data } from "autoprefixer";
-
 export class Api {
     constructor(options) {
         this._baseUrl = options.baseUrl;
@@ -10,14 +8,15 @@ export class Api {
         if (res.ok) {
             return res.json()
         } else {
-            return Promise.reject(`Ошибка: ${res.status}`);
+            return Promise.reject(`Error: ${res.status}`);
         }
     }
 
     getUserInfo() {
-        return fetch(`${this._baseUrl}/users/me`, {
+        return fetch (`${this._baseUrl}/users/me`, {
+            debugger: '',
             method: 'GET',
-            headers: this._headers,
+            headers: this._headers
         })
         .then(this._checkStatus)
     }
@@ -27,7 +26,13 @@ export class Api {
             method: 'GET',
             headers: this._headers,
         })
-        .then(this._checkStatus)
+        .then((res => {
+            return this._checkStatus(res)
+        }))
+    }
+
+    getInitialInfo() {
+        return Promise.all([this.getUserInfo(), this.getInitialCards()])
     }
 
     setUserInfo(data) {
@@ -43,7 +48,7 @@ export class Api {
     }
     
     addUserAvatar(data) {
-        return fetch(`${this._baseUrl}users/me/avatar`, {
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
@@ -66,7 +71,7 @@ export class Api {
     }
 
     delCard(data) {
-        return fetch(`${this._baseUrl}/cards`, {
+        return fetch(`${this._baseUrl}/cards/${data._id}`, {
             method: 'DELETE',
             headers: this._headers
         })
