@@ -24,7 +24,7 @@ export class UserInfo {
     //     this._userName.textContent = name;
     //     this._userWork.textContent = about;
     // }
-
+    debugger;
     getUserAvatar() {
         return this._userAvatar.src
     }

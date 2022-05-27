@@ -24,6 +24,9 @@ const validationProfileForm = new FormValidator (setEnableValidation, formElemen
 const validationAddImageForm = new FormValidator (setEnableValidation, formImage);
 const validationAvatarForm = new FormValidator (setEnableValidation, formAvatar);
 
+let cardForDelete = null;
+let userId = null
+
 const api = new Api({
       baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-41',
       headers: {
@@ -39,7 +42,7 @@ const api = new Api({
       userInfo.setUserAvatar(info);
       userId = info._id;
       console.log(`Мой userId: ${userId}`);
-      cards.renderItems(initialCards);
+      photos.renderItems(initialCards);
     })
     .catch((err => {
       console.log(err);
@@ -57,10 +60,10 @@ const popupAddPicture = new PopupWithForm('.popup_picture', {
     api.addNewCard(formData)
     .then((data) => {
       const card = createCard(data);
-      const cardElement = card.generateCard();
-      cards.addItem(cardElement, 'prepend');
+      const cardTemplate = card.generateCard();
+      photos.addItem(cardTemplate, 'prepend');
       popupAddPicture.toggleBtnValue(false);
-      // cards.addItem(createCard(item));
+      // photos.addItem(createCard(data));
       popupAddPicture.close();
       })
       .catch((err => {
@@ -72,11 +75,12 @@ const popupAddPicture = new PopupWithForm('.popup_picture', {
   }
 });
 
+popupAddPicture.setEventListeners();
+
 addImageBtn.addEventListener('click', () => {
   validationAddImageForm.toggleButtonState()
   popupAddPicture.open();
 });
-popupAddPicture.setEventListeners();
 
 const newPopupProfile = new PopupWithForm('.popup_profile', {
   handleSubmit: (formData) => {
@@ -103,11 +107,11 @@ openProfileBtn.addEventListener('click', () => {
   });
   
   newPopupProfile.setEventListeners();
-  
   const popupCard = new PopupWithImage('.popup_card');
-  
+  console.log(popupCard);
   popupCard.setEventListeners();
   
+  debugger;
   const popupSubmit = new PopupWithSubmit('.popup_confirm', {
       handleSubmit: (data) => {
         api.delCard(data)
@@ -157,14 +161,14 @@ openProfileBtn.addEventListener('click', () => {
       const card = new Card ( {
         data, ownerId: userId,
         handleCardClick: () => {
-          popupCard.open(data.title, data.url);
+          popupCard.open(data.name, data.link);
         }, 
-        handleCardDelete: () => {
+        handleDeleteIconClick: () => {
           cardForDelete = card;
           popupSubmit.open(data);
         },
-        addLike: () => {
-          api.addlike
+        giveLike: () => {
+          api.addlike(data)
           .then((data) => {
             card.addLikeClass();
             card.setLikesCount(data);
@@ -184,16 +188,15 @@ openProfileBtn.addEventListener('click', () => {
           }))
         }
       }, '#template');
-      // const cardElement = card.generateCard();
+      // const cardTemplate = card.generateCard();
       return card
-      
     }
     
-    const cards = new Section({
+    const photos = new Section({
       renderer: (initialCards) => {
         const card = createCard(initialCards);
-        const cardElement = card.generateCard();
-        cards.addItem(cardElement, 'append');
+        const cardTemplate = card.generateCard();
+        photos.addItem(cardTemplate, 'append');
       }
     }, cardsListSelector)
     // cards.renderItems();
