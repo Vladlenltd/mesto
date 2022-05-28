@@ -86,18 +86,20 @@ const newPopupProfile = new PopupWithForm('.popup_profile', {
   handleSubmit: (formData) => {
     newPopupProfile.toggleBtnValue(true);
     api.setUserInfo(formData)
-      .then((res) => {
-        userInfo.setUserInfo(res);
-        newPopupProfile.close();
-      })
-      .catch((err => {
-        console.log(err);
-      }))
-      .finally(() => {
-        newPopupProfile.toggleBtnValue(false)
-      })
+    .then((res) => {
+      userInfo.setUserInfo(res);
+      newPopupProfile.close();
+    })
+    .catch((err => {
+      console.log(err);
+    }))
+    .finally(() => {
+      newPopupProfile.toggleBtnValue(false)
+    })
   }
 });
+
+newPopupProfile.setEventListeners();
 
 openProfileBtn.addEventListener('click', () => {
     const userData = userInfo.getUserInfo();
@@ -106,30 +108,10 @@ openProfileBtn.addEventListener('click', () => {
     newPopupProfile.open();
   });
   
-  newPopupProfile.setEventListeners();
   const popupCard = new PopupWithImage('.popup_card');
-  console.log(popupCard);
+
   popupCard.setEventListeners();
   
-  debugger;
-  const popupSubmit = new PopupWithSubmit('.popup_confirm', {
-      handleSubmit: (data) => {
-        api.delCard(data)
-        .then(() => {
-          cardForDelete.delCard();
-        })
-        .then(() => {
-          cardForDelete = null;
-          popupSubmit.close();
-        })
-        .catch((err => {
-          console.log(err);
-        }))
-      }
-    })
-  
-    popupSubmit.setEventListeners
-
     const popupEditAvatar = new PopupWithForm('.popup_profile-foto', {
       handleSubmit: (formData) => {
         popupEditAvatar.toggleBtnValue(true);
@@ -157,15 +139,33 @@ openProfileBtn.addEventListener('click', () => {
       popupEditAvatar.open();
     })
 
+    const popupConfirm = new PopupWithSubmit('.popup_confirm', {
+      handleSubmit: (data) => {
+        api.delCard(data)
+        .then(() => {
+          cardForDelete.deleteCard();
+        })
+        .then(() => {
+          cardForDelete = null;
+          popupConfirm.close();
+        })
+        .catch((err => {
+          console.log(err);
+        }))
+      }
+    })
+
+    popupConfirm.setEventListeners();
+
     const createCard = (data) => {
       const card = new Card ( {
         data, ownerId: userId,
         handleCardClick: () => {
           popupCard.open(data.name, data.link);
-        }, 
+        },
         handleDeleteIconClick: () => {
           cardForDelete = card;
-          popupSubmit.open(data);
+          popupConfirm.open(data);
         },
         giveLike: () => {
           api.addlike(data)

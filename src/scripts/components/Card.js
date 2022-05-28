@@ -25,8 +25,7 @@ export class Card {
         card = null;
     }
 
-    delCard() {
-        debugger;
+    deleteCard() {
         this._removeCard(this._element)
     }
 
