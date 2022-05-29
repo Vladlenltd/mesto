@@ -13,7 +13,8 @@
         </header>
         <main class="main">
             <section class="profile">
-                <img src="<%=require('./image/profile.jpg')%>" alt="Аватар пользователя" class="profile__foto">
+                <img src="" alt="Аватар пользователя" class="profile__foto">
+                <button type="button" class="profile__edit-avatar"></button>
                 <article class="profile__info">
                     <div class="profile__wrapper">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -38,6 +39,28 @@
                     <span class="about-input-error" id=""></span>
                     <button class="popup__button" type="submit">Сохранить</button>
                 </form>    
+            </div>
+        </section>
+        <!-- Popup измениния фото профиля -->
+        <section class="popup popup_profile-foto">
+            <div class="popup__container">
+                <button class="popup__close-btn"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="popup__content popup__form popup__form-profile-foto" name="profile-foto" novalidate>
+                    <input class="popup__input popup__input_type_avatar" id="avatar-input" name="avatar" type="url" placeholder="Ссылка на картинку" minlength="2" required>
+                    <span class="avatar-input-error" id=""></span>
+                    <button class="popup__button" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </section>
+        <!-- Popup c подтверждением -->
+        <section class="popup popup_confirm">
+            <div class="popup__container">
+                <button class="popup__close-btn"></button>
+                <form class="popup__content popup__form popup__form-confirm" name="confirm" novalidate>
+                    <h2 class="popup__title">Вы уверены?</h2>
+                    <button class="popup__button" type="submit">Да</button>
+                </form>
             </div>
         </section>
         <!-- Popup добавления картинки -->
@@ -74,7 +97,10 @@
             <img src="#" alt="" class="element__item">
             <div class="element__wrapper">
                 <h2 class="element__title"></h2>
-                <button class="element__like-btn" type="button"></button>
+                <div class="element__like">
+                    <button class="element__like-btn" type="button"></button>
+                    <span class="element__like-count">1</span>
+                </div>
             </div>
         </article>
     </template>
