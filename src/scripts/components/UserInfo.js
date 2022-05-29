@@ -9,7 +9,7 @@ export class UserInfo {
     }
 
     getUserInfo() {
-        const userInfo ={
+        const userInfo = {
             userName: this._userName.textContent,
             userWork: this._userWork.textContent 
         }
@@ -20,11 +20,7 @@ export class UserInfo {
         this._userName.textContent = data.name;
         this._userWork.textContent = data.about;
     }
-    // setUserInfo({ name, about }) {
-    //     this._userName.textContent = name;
-    //     this._userWork.textContent = about;
-    // }
-    debugger;
+
     getUserAvatar() {
         return this._userAvatar.src
     }

@@ -37,10 +37,10 @@ const api = new Api({
 
   api.getInitialInfo()
     .then((data) => {
-      const [info, initialCards] = data;
-      userInfo.setUserInfo(info);
-      userInfo.setUserAvatar(info);
-      userId = info._id;
+      const [initialInfo, initialCards] = data;
+      userInfo.setUserInfo(initialInfo);
+      userInfo.setUserAvatar(initialInfo);
+      userId = initialInfo._id;
       console.log(`Мой userId: ${userId}`);
       photos.renderItems(initialCards);
     })
@@ -111,33 +111,33 @@ openProfileBtn.addEventListener('click', () => {
   const popupCard = new PopupWithImage('.popup_card');
 
   popupCard.setEventListeners();
-  
-    const popupEditAvatar = new PopupWithForm('.popup_profile-foto', {
-      handleSubmit: (formData) => {
-        popupEditAvatar.toggleBtnValue(true);
-        api.addUserAvatar(formData)
-        .then((res => {
-          userInfo.setUserAvatar(res);
-          popupEditAvatar.toggleBtnValue(false)
-          popupEditAvatar.close();
-        }))
-        .catch((err => {
-          console.log(err);
-        }))
-        .finally(() => {
-          popupEditAvatar.toggleBtnValue(false)
-        })
-      }
-    })
+  ////////////////////////////////////
+  const popupAvatarEdit = new PopupWithForm('.popup_profile-foto', {
+    handleSubmit: (formData) => {
+      popupAvatarEdit.toggleBtnValue(true);
+      api.addUserAvatar(formData)
+      .then((res => {
+        userInfo.setUserAvatar(res);
+        popupAvatarEdit.toggleBtnValue(false)
+        popupAvatarEdit.close();
+      }))
+      .catch((err => {
+        console.log(err);
+      }))
+      .finally(() => {
+        popupAvatarEdit.toggleBtnValue(false)
+      })
+    }
+  })
 
-    popupEditAvatar.setEventListeners();
+popupAvatarEdit.setEventListeners();
 
-    editAvatarBtn.addEventListener('click', () => {
-      const userAvatar = userInfo.getUserAvatar();
-      avatarInput.value = userAvatar;
-      validationAvatarForm.toggleButtonState();
-      popupEditAvatar.open();
-    })
+editAvatarBtn.addEventListener('click', () => {
+  const userAvatar = userInfo.getUserAvatar();
+  avatarInput.value = userAvatar;
+  validationAvatarForm.toggleButtonState();
+  popupAvatarEdit.open();
+})
 
     const popupConfirm = new PopupWithSubmit('.popup_confirm', {
       handleSubmit: (data) => {
@@ -201,7 +201,8 @@ openProfileBtn.addEventListener('click', () => {
     }, cardsListSelector)
     // cards.renderItems();
     
-
+// разобраться с валидацией и аватаром
+//просмотреть попап аватара и и кнопкой аватара
 validationProfileForm.enableValidation();
 validationAddImageForm.enableValidation();
 validationAvatarForm.enableValidation();
