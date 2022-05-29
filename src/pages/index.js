@@ -59,8 +59,8 @@ const popupAddPicture = new PopupWithForm('.popup_picture', {
     api.addNewCard(formData)
     .then((data) => {
       const card = createCard(data);
-      const cardTemplate = card.generateCard();
-      photos.addItem(cardTemplate, 'prepend');
+      // const cardTemplate = card.generateCard();
+      photos.addItem(card, 'prepend');
       popupAddPicture.toggleBtnValue(false);
       popupAddPicture.close();
       })
@@ -131,8 +131,6 @@ openProfileBtn.addEventListener('click', () => {
 popupAvatarEdit.setEventListeners();
 
 editAvatarBtn.addEventListener('click', () => {
-  const userAvatar = userInfo.getUserAvatar();
-  avatarInput.value = userAvatar;
   validationAvatarForm.toggleButtonState();
   popupAvatarEdit.open();
 })
@@ -186,14 +184,14 @@ editAvatarBtn.addEventListener('click', () => {
           }))
         }
       }, '#template');
-      return card
+      return card.generateCard();
+      
     }
     
     const photos = new Section({
       renderer: (initialCards) => {
         const card = createCard(initialCards);
-        const cardTemplate = card.generateCard();
-        photos.addItem(cardTemplate, 'append');
+        photos.addItem(card, 'append');
       }
     }, cardsListSelector)
     
