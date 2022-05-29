@@ -47,12 +47,12 @@ export class Api {
         .then(this._checkStatus)
     }
 
-    addUserAvatar(data) {
+    newUserAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: data,
+                avatar: data.avatar
             })
         })
         .then(this._checkStatus)
@@ -94,11 +94,3 @@ export class Api {
         .then(this._checkStatus)
     }
 }
-
-// export const api = new Api({
-//     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-41',
-//     header: {
-//         authorization: '6be6d1f2-064d-406f-a1f7-f93c76457b36',
-//         'Content-Type': 'application/json'
-//     }
-// })

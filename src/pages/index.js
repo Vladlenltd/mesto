@@ -6,7 +6,6 @@ import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
 import { PopupWithSubmit } from "../scripts/components/PopupWithSubmit.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
-// import { initialCards, setEnableValidation } from "../scripts/utils/constants.js"
 import { setEnableValidation } from "../scripts/utils/constants.js"
 import './index.css'
 
@@ -20,6 +19,7 @@ const avatarInput = formAvatar.querySelector('#avatar-input');
 const titleInput = formElementProfile.querySelector('#name-input');
 const workInput = formElementProfile.querySelector('#about-input');
 const cardsListSelector = '.elements';
+
 const validationProfileForm = new FormValidator (setEnableValidation, formElementProfile);
 const validationAddImageForm = new FormValidator (setEnableValidation, formImage);
 const validationAvatarForm = new FormValidator (setEnableValidation, formAvatar);
@@ -41,7 +41,6 @@ const api = new Api({
       userInfo.setUserInfo(initialInfo);
       userInfo.setUserAvatar(initialInfo);
       userId = initialInfo._id;
-      console.log(`Мой userId: ${userId}`);
       photos.renderItems(initialCards);
     })
     .catch((err => {
@@ -63,11 +62,10 @@ const popupAddPicture = new PopupWithForm('.popup_picture', {
       const cardTemplate = card.generateCard();
       photos.addItem(cardTemplate, 'prepend');
       popupAddPicture.toggleBtnValue(false);
-      // photos.addItem(createCard(data));
       popupAddPicture.close();
       })
       .catch((err => {
-        console.log(err);
+        console.log('не возможно добавить фотографию');
       }))
       .finally(() => {
         popupAddPicture.toggleBtnValue(false)
@@ -111,18 +109,18 @@ openProfileBtn.addEventListener('click', () => {
   const popupCard = new PopupWithImage('.popup_card');
 
   popupCard.setEventListeners();
-  ////////////////////////////////////
+
   const popupAvatarEdit = new PopupWithForm('.popup_profile-foto', {
     handleSubmit: (formData) => {
       popupAvatarEdit.toggleBtnValue(true);
-      api.addUserAvatar(formData)
+      api.newUserAvatar(formData)
       .then((res => {
         userInfo.setUserAvatar(res);
         popupAvatarEdit.toggleBtnValue(false)
         popupAvatarEdit.close();
       }))
       .catch((err => {
-        console.log(err);
+        console.log('не возможно сохранить изображение');
       }))
       .finally(() => {
         popupAvatarEdit.toggleBtnValue(false)
@@ -150,7 +148,7 @@ editAvatarBtn.addEventListener('click', () => {
           popupConfirm.close();
         })
         .catch((err => {
-          console.log(err);
+          console.log('удаление не возможно');
         }))
       }
     })
@@ -188,7 +186,6 @@ editAvatarBtn.addEventListener('click', () => {
           }))
         }
       }, '#template');
-      // const cardTemplate = card.generateCard();
       return card
     }
     
@@ -199,10 +196,7 @@ editAvatarBtn.addEventListener('click', () => {
         photos.addItem(cardTemplate, 'append');
       }
     }, cardsListSelector)
-    // cards.renderItems();
     
-// разобраться с валидацией и аватаром
-//просмотреть попап аватара и и кнопкой аватара
 validationProfileForm.enableValidation();
 validationAddImageForm.enableValidation();
 validationAvatarForm.enableValidation();
